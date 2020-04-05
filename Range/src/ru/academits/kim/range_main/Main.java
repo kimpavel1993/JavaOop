@@ -5,56 +5,54 @@ import ru.academits.kim.range.Range;
 import java.util.Arrays;
 
 public class Main {
-    public static void getArray(Range[] array) {
-        if (array != null) {
-            for (Range range : array) {
-                System.out.println(range.toString());
-            }
-        } else {
-            System.out.println("null");
+    public static void printArray(Range[] array) {
+        for (Range range : array) {
+            System.out.println(range);
         }
     }
 
     public static void main(String[] args) {
-        Range firstRange = new Range(5, 1);
-        Range secondRange = new Range(6, 4);
+        Range range1 = new Range(6, 10);
+        Range range2 = new Range(1, 15);
 
-        System.out.println("Первый диапазон: " + firstRange.toString());
-        System.out.println("Второй диапазон: " + secondRange.toString());
+        System.out.println("Первый диапазон: " + range1);
+        System.out.println("Второй диапазон: " + range2);
 
-        Range intersection = firstRange.getIntersection(secondRange);
+        Range intersection = range1.getIntersection(range2);
 
         if (intersection != null) {
-            System.out.println("Пересечение: " + intersection.toString());
+            System.out.println("Пересечение: " + intersection);
         } else {
             System.out.println("Пересечение: null");
         }
 
         System.out.println("Объединение:");
 
-        Range[] union = firstRange.getUnion(secondRange);
-        getArray(union);
+        Range[] union = range1.getUnion(range2);
+        printArray(union);
 
         System.out.println("Разность:");
 
-        Range[] difference = firstRange.getDifference(secondRange);
-        if (Arrays.equals(firstRange.getDifference(secondRange), secondRange.getDifference(firstRange))) {
-            System.out.println("Диапазон равен 0");
+        Range[] difference = range1.getDifference(range2);
+        if (Arrays.equals(range1.getDifference(range2), range2.getDifference(range1))) {
+            System.out.println("[]");
+        } else if (difference == null) {
+            System.out.println("null");
         } else {
-            getArray(difference);
+            printArray(difference);
         }
 
-        System.out.println("Попадание в числовой диапазон: " + firstRange.isInside(2));
-        System.out.println("Длина диапазона: " + firstRange.getLength());
+        System.out.println("Попадание в числовой диапазон: " + range1.isInside(2));
+        System.out.println("Длина диапазона: " + range1.getLength());
 
-        firstRange.setFrom(3);
-        System.out.println("Первое число нового диапазона: " + firstRange.getFrom());
+        range1.setFrom(3);
+        System.out.println("Первое число нового диапазона: " + range1.getFrom());
 
-        firstRange.setTo(7);
-        System.out.println("Последнее число нового диапазона: " + firstRange.getTo());
+        range1.setTo(7);
+        System.out.println("Последнее число нового диапазона: " + range1.getTo());
 
-        System.out.println("Новый диапазон:" + firstRange.toString());
-        System.out.println("Попадание в новый числовой диапазон: " + firstRange.isInside(6));
-        System.out.println("Длина нового диапазона: " + firstRange.getLength());
+        System.out.println("Новый диапазон:" + range1);
+        System.out.println("Попадание в новый числовой диапазон: " + range1.isInside(6));
+        System.out.println("Длина нового диапазона: " + range1.getLength());
     }
 }

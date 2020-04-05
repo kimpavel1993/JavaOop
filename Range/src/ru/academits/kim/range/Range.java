@@ -34,75 +34,58 @@ public class Range {
     }
 
     public Range getIntersection(Range range) {
-        if ((Math.max(from, to) < Math.min(range.from, range.to)) || (Math.max(range.from, range.to) < Math.min(from, to))) {
+        double minTo = Math.min(to, range.to);
+        double maxFrom = Math.max(from, range.from);
+
+        if ((to <= range.from) || (range.to <= from)) {
             return null;
         }
 
-        if ((Math.max(range.from, range.to) >= Math.max(from, to)) && (Math.min(range.from, range.to) <= Math.min(from, to))) {
-            return new Range(Math.min(from, to), Math.max(from, to));
-        }
-
-        if (Math.max(from, to) >= Math.max(range.from, range.to) && Math.min(from, to) <= Math.min(range.from, range.to)) {
-            return new Range(Math.min(range.from, range.to), Math.max(range.from, range.to));
-        }
-
-        if (Math.min(to, from) < Math.min(range.to, range.from)) {
-            return new Range(Math.min(range.from, range.to), Math.max(from, to));
-        }
-
-        return new Range(Math.min(from, to), Math.max(range.from, range.to));
+        return new Range(maxFrom, minTo);
     }
 
     public Range[] getUnion(Range range) {
-        if (Math.max(range.from, range.to) >= Math.max(from, to) && Math.min(range.from, range.to) <= Math.min(from, to)) {
-            return new Range[]{new Range(Math.min(range.from, range.to), Math.max(range.from, range.to))};
+        double minTo = Math.min(to, range.to);
+        double maxTo = Math.max(to, range.to);
+        double minFrom = Math.min(from, range.from);
+        double maxFrom = Math.max(from, range.from);
+
+        if ((range.to > to && range.from < from) || (to > range.to && from < range.from) || (maxFrom <= minTo)) {
+            return new Range[]{new Range(minFrom, maxTo)};
         }
 
-        if (Math.max(from, to) >= Math.max(range.from, range.to) && Math.min(from, to) <= Math.min(range.from, range.to)) {
-            return new Range[]{new Range(Math.min(from, to), Math.max(from, to))};
-        }
-
-        if (Math.min(from, to) < Math.min(range.from, range.to) && Math.max(from, to) >= Math.min(range.from, range.to)) {
-            return new Range[]{new Range(Math.min(from, to), Math.max(range.from, range.to))};
-        }
-
-        if (Math.min(range.from, range.to) < Math.min(from, to) && Math.max(range.from, range.to) > Math.min(from, to)) {
-            return new Range[]{new Range(Math.min(range.from, range.to), Math.max(from, to))};
-        }
-
-        if (Math.max(from, to) < Math.min(range.from, range.to)) {
-            return new Range[]{new Range(Math.min(from, to), Math.max(from, to)), new Range(Math.min(range.from, range.to), Math.max(range.from, range.to))};
-        }
-
-        return new Range[]{new Range(Math.min(range.from, range.to), Math.max(range.from, range.to)), new Range(Math.min(from, to), Math.max(from, to))};
+        return new Range[]{new Range(from, to), new Range(range.from, range.to)};
     }
 
     public Range[] getDifference(Range range) {
-        double epsilon = 1.0e-10;
-        if (Math.abs(Math.max(from, to) - Math.max(range.from, range.to)) <= epsilon && Math.abs(Math.min(from, to) - Math.min(range.from, range.to)) <= epsilon) {
+        double minTo = Math.min(to, range.to);
+        double maxFrom = Math.max(from, range.from);
+
+        if (from == range.from && to == range.to) {
             return new Range[0];
         }
 
-        if (Math.max(from, to) < Math.min(range.from, range.to) || Math.max(range.from, range.to) < Math.min(from, to)) {
-            return new Range[]{new Range(Math.min(from, to), Math.max(from, to))};
-        }
-
-        if (Math.max(range.from, range.to) >= Math.max(from, to) && Math.min(range.from, range.to) <= Math.min(from, to)) {
+        if (range.to > to && range.from < from) {
             return null;
         }
 
-        if (Math.max(from, to) > Math.max(range.from, range.to) && Math.min(from, to) < Math.min(range.from, range.to)) {
-            return new Range[]{new Range(Math.min(from, to), Math.min(range.from, range.to)), new Range(Math.max(range.from, range.to), Math.max(from, to))};
+        if (minTo < maxFrom) {
+            return new Range[]{new Range(from, to)};
         }
 
-        if (Math.min(from, to) < Math.min(range.from, range.to)) {
-            return new Range[]{new Range(Math.min(from, to), Math.min(range.from, range.to))};
+        if (to > range.to && from < range.from) {
+            return new Range[]{new Range(from, range.from), new Range(range.to, to)};
         }
 
-        return new Range[]{new Range(Math.max(range.from, range.to), Math.max(from, to))};
+        if (from < range.from) {
+            return new Range[]{new Range(from, range.from)};
+        }
+
+        return new Range[]{new Range(range.to, to)};
     }
 
+    @Override
     public String toString() {
-        return "[" + from + ", " + to + "]";
+        return "(" + from + ", " + to + ")";
     }
 }
