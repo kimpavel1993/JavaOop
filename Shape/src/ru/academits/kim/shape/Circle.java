@@ -29,7 +29,8 @@ public class Circle implements Shape {
 
     @Override
     public String toString() {
-        return "[Ширина окружности: " + getWidth() + ", Высота окружности: " + getHeight() + ", Площадь окружности: " + getArea() + ", Периметр окружности: " + getPerimeter() + "]";
+        return "Окружность: [Радиус: " + radius + ", Ширина: " + getWidth() + ", Высота: " + getHeight() +
+                ", Площадь: " + getArea() + ", Периметр: " + getPerimeter() + "]";
     }
 
     @Override

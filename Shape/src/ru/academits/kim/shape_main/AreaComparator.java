@@ -5,7 +5,8 @@ import ru.academits.kim.shape.Shape;
 import java.util.Comparator;
 
 public class AreaComparator implements Comparator<Shape> {
-    public int compare(Shape area1, Shape area2) {
-        return Double.compare(area1.getArea(), area2.getArea());
+    @Override
+    public int compare(Shape o1, Shape o2) {
+        return Double.compare(o1.getArea(), o2.getArea());
     }
 }

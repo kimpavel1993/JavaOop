@@ -29,7 +29,8 @@ public class Square implements Shape {
 
     @Override
     public String toString() {
-        return "[Ширина квадрата: " + getWidth() + ", Высота квадрата: " + getHeight() + ", Площадь квадрата: " + getArea() + ", Периметр квадрата: " + getPerimeter() + "]";
+        return "Квадрат: [Ширина: " + getWidth() + ", Высота: " + getHeight() +
+                ", Площадь: " + getArea() + ", Периметр: " + getPerimeter() + "]";
     }
 
     @Override
