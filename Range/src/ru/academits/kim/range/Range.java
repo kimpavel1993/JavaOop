@@ -37,7 +37,7 @@ public class Range {
         double minTo = Math.min(to, range.to);
         double maxFrom = Math.max(from, range.from);
 
-        if ((to <= range.from) || (range.to <= from)) {
+        if (minTo <= maxFrom) {
             return null;
         }
 
