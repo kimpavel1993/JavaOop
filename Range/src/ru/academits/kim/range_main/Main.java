@@ -12,8 +12,8 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        Range range1 = new Range(6, 10);
-        Range range2 = new Range(1, 15);
+        Range range1 = new Range(1, 10);
+        Range range2 = new Range(4, 5);
 
         System.out.println("Первый диапазон: " + range1);
         System.out.println("Второй диапазон: " + range2);
@@ -34,10 +34,8 @@ public class Main {
         System.out.println("Разность:");
 
         Range[] difference = range1.getDifference(range2);
-        if (Arrays.equals(range1.getDifference(range2), range2.getDifference(range1))) {
+        if (difference.length == 0) {
             System.out.println("[]");
-        } else if (difference == null) {
-            System.out.println("null");
         } else {
             printArray(difference);
         }

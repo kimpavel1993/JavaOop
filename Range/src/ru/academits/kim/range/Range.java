@@ -50,7 +50,7 @@ public class Range {
         double minFrom = Math.min(from, range.from);
         double maxFrom = Math.max(from, range.from);
 
-        if ((range.to > to && range.from < from) || (to > range.to && from < range.from) || (maxFrom <= minTo)) {
+        if (maxFrom <= minTo) {
             return new Range[]{new Range(minFrom, maxTo)};
         }
 
@@ -61,15 +61,11 @@ public class Range {
         double minTo = Math.min(to, range.to);
         double maxFrom = Math.max(from, range.from);
 
-        if (from == range.from && to == range.to) {
+        if (range.to >= to && range.from <= from) {
             return new Range[0];
         }
 
-        if (range.to > to && range.from < from) {
-            return null;
-        }
-
-        if (minTo < maxFrom) {
+        if (minTo <= maxFrom) {
             return new Range[]{new Range(from, to)};
         }
 
