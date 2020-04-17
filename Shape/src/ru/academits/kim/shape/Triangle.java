@@ -19,16 +19,15 @@ public class Triangle implements Shape {
 
     @Override
     public double getWidth() {
-        return Math.max(Math.max(x1, x2), x3) - Math.min(Math.max(x1, x2), x3);
+        return Math.max(Math.max(x1, x2), x3) - Math.min(Math.min(x1, x2), x3);
     }
 
     @Override
     public double getHeight() {
-        return Math.max(Math.max(y1, y2), y3) - Math.min(Math.max(y1, y2), y3);
+        return Math.max(Math.max(y1, y2), y3) - Math.min(Math.min(y1, y2), y3);
     }
 
-
-    private double getSideLength(double x1, double y1, double x2, double y2) {
+    private static double getSideLength(double x1, double y1, double x2, double y2) {
         return Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
     }
 
@@ -39,7 +38,7 @@ public class Triangle implements Shape {
 
     @Override
     public double getArea() {
-        return (0.5 * Math.abs((x2 - x1) * (y3 - y1) - (x3 - x1) * (y2 - y1)));
+        return 0.5 * Math.abs((x2 - x1) * (y3 - y1) - (x3 - x1) * (y2 - y1));
     }
 
     @Override

@@ -1,32 +1,32 @@
 package ru.academits.kim.shape;
 
 public class Rectangle implements Shape {
-    private double sideLength1;
-    private double sideLength2;
+    private double width;
+    private double height;
 
-    public Rectangle(double sideLength1, double sideLength2) {
-        this.sideLength1 = sideLength1;
-        this.sideLength2 = sideLength2;
+    public Rectangle(double width, double height) {
+        this.width = width;
+        this.height = height;
     }
 
     @Override
     public double getWidth() {
-        return sideLength1;
+        return width;
     }
 
     @Override
     public double getHeight() {
-        return sideLength2;
+        return height;
     }
 
     @Override
     public double getArea() {
-        return sideLength1 * sideLength2;
+        return width * height;
     }
 
     @Override
     public double getPerimeter() {
-        return (sideLength1 + sideLength2) * 2;
+        return (width + height) * 2;
     }
 
     @Override
@@ -47,7 +47,7 @@ public class Rectangle implements Shape {
 
         Rectangle p = (Rectangle) o;
 
-        return sideLength1 == p.sideLength1 && sideLength2 == p.sideLength2;
+        return width == p.width && height == p.height;
     }
 
     @Override
@@ -55,8 +55,8 @@ public class Rectangle implements Shape {
         int prime = 17;
         int hash = 1;
 
-        hash = hash * prime + Double.hashCode(sideLength1);
-        hash = hash * prime + Double.hashCode(sideLength2);
+        hash = hash * prime + Double.hashCode(width);
+        hash = hash * prime + Double.hashCode(height);
 
         return hash;
     }
