@@ -8,7 +8,6 @@ import java.util.Scanner;
 
 public class ArrayListHome {
     public static void main(String[] args) throws FileNotFoundException {
-
         try (Scanner scanner = new Scanner(new FileInputStream("input.txt"))) {
             ArrayList<String> list = new ArrayList<>();
 
@@ -27,8 +26,8 @@ public class ArrayListHome {
                 i--;
             }
         }
-        System.out.println(numbers1);
 
+        System.out.println(numbers1);
 
         ArrayList<Integer> numbers2 = new ArrayList<>(Arrays.asList(1, 5, 2, 1, 3, 5));
         ArrayList<Integer> newNumbers2 = new ArrayList<>();
