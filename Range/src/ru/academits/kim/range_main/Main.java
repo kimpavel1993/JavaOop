@@ -2,8 +2,6 @@ package ru.academits.kim.range_main;
 
 import ru.academits.kim.range.Range;
 
-import java.util.Arrays;
-
 public class Main {
     public static void printArray(Range[] array) {
         for (Range range : array) {

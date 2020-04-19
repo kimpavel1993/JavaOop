@@ -58,12 +58,12 @@ public class Range {
     }
 
     public Range[] getDifference(Range range) {
-        double minTo = Math.min(to, range.to);
-        double maxFrom = Math.max(from, range.from);
-
         if (range.to >= to && range.from <= from) {
             return new Range[0];
         }
+
+        double minTo = Math.min(to, range.to);
+        double maxFrom = Math.max(from, range.from);
 
         if (minTo <= maxFrom) {
             return new Range[]{new Range(from, to)};
