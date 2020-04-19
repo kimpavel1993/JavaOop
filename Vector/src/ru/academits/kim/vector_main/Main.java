@@ -19,19 +19,22 @@ public class Main {
         System.out.println("Сумма векторов:");
 
         System.out.println(vector4.getSum(vector3));
-        System.out.println(Vector.getSum(vector3, vector4));
+        System.out.println(Vector.getSum(vector4, vector3));
 
         System.out.println("Разность векторов:");
 
-        System.out.println(vector1.getDifference(vector4));
-        System.out.println(Vector.getDifference(vector3, vector2));
+        System.out.println(vector3.getDifference(vector2));
+        System.out.println(Vector.getDifference(vector4, vector3));
 
         System.out.println("Скалярное произведение векторов: " + Vector.getScalarProduct(vector3, vector4));
         System.out.println("Длина вектора: " + vector3.getSize());
-        System.out.println("Умножение вектора на скаляр: " + vector4.getScalarMultiplication(3));
-        System.out.println("Разворот вектора: " + vector4.getVectorSpread());
-        System.out.println("Длина вектора: " + vector4.getVectorLength());
-        System.out.println("Значение индекса: " + (vector4.getVectorIndex(3)));
-        System.out.println("Новый массив с замененным индексом: " + (vector3.setVectorIndex(1, 10)));
+        System.out.println("Умножение вектора на скаляр: " + vector3.getMultiplyByScalar(3));
+        System.out.println("Разворот вектора: " + vector3.getTurn());
+        System.out.println("Длина вектора: " + vector4.getLength());
+        System.out.println("Значение индекса: " + (vector4.getIndex(3)));
+
+        vector1.setIndex(1, 10);
+
+        System.out.println("Первый вектор с обновленным индексом: " + vector1);
     }
 }
