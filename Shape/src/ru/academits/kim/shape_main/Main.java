@@ -5,14 +5,14 @@ import ru.academits.kim.shape.*;
 import java.util.Arrays;
 
 public class Main {
-    private static void getShapeMaxArea(Shape[] shapes) {
+    private static void shapeMaxArea(Shape[] shapes) {
         AreaComparator areaComparator = new AreaComparator();
         Arrays.sort(shapes, areaComparator);
 
         System.out.println("Фигура с максимальной площадью - " + shapes[shapes.length - 1]);
     }
 
-    private static void getShapeSecondMaxPerimeter(Shape[] shapes) {
+    private static void shapeSecondMaxPerimeter(Shape[] shapes) {
         PerimeterComparator perimeterComparator = new PerimeterComparator();
         Arrays.sort(shapes, perimeterComparator);
 
@@ -28,7 +28,7 @@ public class Main {
         shapes[3] = new Rectangle(4, 5);
         shapes[4] = new Circle(5);
 
-        getShapeMaxArea(shapes);
-        getShapeSecondMaxPerimeter(shapes);
+        shapeMaxArea(shapes);
+        shapeSecondMaxPerimeter(shapes);
     }
 }

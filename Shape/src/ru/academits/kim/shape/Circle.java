@@ -39,7 +39,7 @@ public class Circle implements Shape {
             return false;
         }
 
-        if (o == null || o.getClass() != this.getClass()) {
+        if (o == null || o.getClass() != getClass()) {
             return false;
         }
 
