@@ -179,7 +179,6 @@ public class List<T> {
             prevNode.setNext(node);
             prevNode = node;
         }
-
     }
 
     @Override
