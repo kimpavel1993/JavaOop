@@ -162,9 +162,10 @@ public class List<T> {
         }
     }
 
-    public List<T> copy() {
+    public void copy() {
         if (length == 0) {
-            return new List<>();
+            new List<>();
+            return;
         }
 
         List<T> cloneList = new List<>(head.getData());
@@ -179,7 +180,6 @@ public class List<T> {
             prevNode = node;
         }
 
-        return cloneList;
     }
 
     @Override
