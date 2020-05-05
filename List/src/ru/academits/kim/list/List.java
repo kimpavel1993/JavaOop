@@ -7,13 +7,13 @@ public class List<T> {
     private int length;
 
     public List() {
-        this.head = null;
-        this.length = 0;
+        head = null;
+        length = 0;
     }
 
     public List(T data) {
-        this.head = new ListItem<>(data);
-        this.length = 1;
+        head = new ListItem<>(data);
+        length = 1;
     }
 
     public int getLength() {
