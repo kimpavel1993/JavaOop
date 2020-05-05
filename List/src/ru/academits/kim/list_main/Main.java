@@ -1,4 +1,4 @@
-package ru.academits.kim.main;
+package ru.academits.kim.list_main;
 
 import ru.academits.kim.list.List;
 
