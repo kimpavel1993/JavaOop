@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 public class Main {
     public static void main(String[] args) {
         List<Person> list = new ArrayList<>(Arrays.asList(
-                new Person("Иван", 11),
+                new Person("Иван", 12),
                 new Person("Сергей", 33),
                 new Person("Петр", 22),
                 new Person("Ольга", 15),
