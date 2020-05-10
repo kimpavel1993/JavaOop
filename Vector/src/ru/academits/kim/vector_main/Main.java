@@ -18,12 +18,12 @@ public class Main {
 
         System.out.println("Сумма векторов:");
 
-        System.out.println(vector1.getSum(vector3));
+        System.out.println(vector1.add(vector3));
         System.out.println(Vector.getSum(vector4, vector3));
 
         System.out.println("Разность векторов:");
 
-        System.out.println(vector2.getDifference(vector1));
+        System.out.println(vector2.subtract(vector1));
         System.out.println(Vector.getDifference(vector4, vector3));
 
         System.out.println("Скалярное произведение векторов: " + Vector.getScalarProduct(vector3, vector4));

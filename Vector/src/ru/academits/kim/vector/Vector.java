@@ -5,12 +5,12 @@ import java.util.Arrays;
 public class Vector {
     private double[] components;
 
-    public Vector(int n) {
-        if (n <= 0) {
+    public Vector(int size) {
+        if (size <= 0) {
             throw new IllegalArgumentException("Размерность вектора должна быть > 0");
         }
 
-        components = new double[n];
+        components = new double[size];
     }
 
     public Vector(Vector clone) {
@@ -25,26 +25,26 @@ public class Vector {
         this.components = Arrays.copyOf(components, components.length);
     }
 
-    public Vector(int n, double[] components) {
-        if (n <= 0) {
+    public Vector(int size, double[] components) {
+        if (size <= 0) {
             throw new IllegalArgumentException("Размерность вектора должна быть > 0");
         }
 
-        this.components = Arrays.copyOf(components, n);
+        this.components = Arrays.copyOf(components, size);
     }
 
     public int getSize() {
         return components.length;
     }
 
-    private void maxLengthArray(Vector vector) {
+    private void equateLength(Vector vector) {
         if (components.length < vector.components.length) {
             components = Arrays.copyOf(components, vector.components.length);
         }
     }
 
-    public Vector getSum(Vector vector) {
-        maxLengthArray(vector);
+    public Vector add(Vector vector) {
+        equateLength(vector);
 
         for (int i = 0; i < vector.components.length; i++) {
             components[i] += vector.components[i];
@@ -53,8 +53,8 @@ public class Vector {
         return this;
     }
 
-    public Vector getDifference(Vector vector) {
-        maxLengthArray(vector);
+    public Vector subtract(Vector vector) {
+        equateLength(vector);
 
         for (int i = 0; i < vector.components.length; i++) {
             components[i] -= vector.components[i];
@@ -94,20 +94,20 @@ public class Vector {
     public static Vector getSum(Vector vector1, Vector vector2) {
         Vector vector = new Vector(vector1);
 
-        return vector.getSum(vector2);
+        return vector.add(vector2);
     }
 
     public static Vector getDifference(Vector vector1, Vector vector2) {
         Vector vector = new Vector(vector1);
 
-        return vector.getDifference(vector2);
+        return vector.subtract(vector2);
     }
 
     public static double getScalarProduct(Vector vector1, Vector vector2) {
         double scalarProduct = 0;
-        int arrayLength = Math.min(vector1.getSize(), vector2.getSize());
+        int minLength = Math.min(vector1.getSize(), vector2.getSize());
 
-        for (int i = 0; i < arrayLength; i++) {
+        for (int i = 0; i < minLength; i++) {
             scalarProduct += vector1.components[i] * vector2.components[i];
         }
 
