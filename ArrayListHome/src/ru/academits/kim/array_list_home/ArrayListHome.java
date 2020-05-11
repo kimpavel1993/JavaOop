@@ -21,7 +21,7 @@ public class ArrayListHome {
             System.out.println("Файл не найден");
         }
 
-        ArrayList<Integer> numbers = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 55, 47, 56, 48, 78, 98));
+        ArrayList<Integer> numbers = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 55, 47, 56, 48, 78, 98, 102));
 
         System.out.println("Список из чисел: " + numbers);
 
