@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 public class ArrayListHome {
     public static void main(String[] args) {
-        try (Scanner scanner = new Scanner(new FileInputStream("C:\\Users\\Pc\\Documents\\IdeaProjects\\JavaOop\\input.txt"))) {
+        try (Scanner scanner = new Scanner(new FileInputStream("input.txt"))) {
             ArrayList<String> listStringsFromFile = new ArrayList<>();
 
             while (scanner.hasNextLine()) {
