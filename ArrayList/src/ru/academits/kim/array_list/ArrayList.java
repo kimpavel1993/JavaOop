@@ -9,7 +9,7 @@ public class ArrayList<T> implements List<T> {
 
     public ArrayList(int capacity) {
         if (capacity < 0) {
-            throw new IllegalArgumentException("Некорректно введена вместимость");
+            throw new IllegalArgumentException("Введена вместимость меньше 0");
         }
 
         //noinspection unchecked
@@ -66,8 +66,8 @@ public class ArrayList<T> implements List<T> {
 
     @Override
     public T get(int index) {
-        if (index < 0 || index > size - 1) {
-            throw new IllegalArgumentException("Некорректно введен индекс");
+        if (index < 0 || index >= size) {
+            throw new IndexOutOfBoundsException("Индекс не должен быть меньше 0 или больше значения, равному длине списка - 1. Текущее значение индекса:  " + index);
         }
 
         return items[index];
@@ -75,8 +75,8 @@ public class ArrayList<T> implements List<T> {
 
     @Override
     public T set(int index, T element) {
-        if (index < 0 || index > size - 1) {
-            throw new IllegalArgumentException("Некорректно введен индекс");
+        if (index < 0 || index >= size) {
+            throw new IndexOutOfBoundsException("Индекс не должен быть меньше 0 или больше значения, равному длине списка - 1. Текущее значение индекса:  " + index);
         }
 
         T oldElement = items[index];
@@ -99,8 +99,8 @@ public class ArrayList<T> implements List<T> {
 
     @Override
     public void add(int index, T element) {
-        if (index < 0 || index > size - 1) {
-            throw new IllegalArgumentException("Некорректно введен индекс");
+        if (index < 0 || index >= size) {
+            throw new IndexOutOfBoundsException("Индекс не должен быть меньше 0 или больше значения, равному длине списка - 1. Текущее значение индекса:  " + index);
         }
 
         System.arraycopy(items, index, items, index + 1, size - index);
@@ -113,15 +113,15 @@ public class ArrayList<T> implements List<T> {
 
     @Override
     public T remove(int index) {
-        if (index < 0 || index > size - 1) {
-            throw new IllegalArgumentException("Некорректно введен индекс");
+        if (index < 0 || index >= size) {
+            throw new IndexOutOfBoundsException("Индекс не должен быть меньше 0 или больше значения, равному длине списка - 1. Текущее значение индекса:  " + index);
         }
 
         T oldElement = items[index];
 
         System.arraycopy(items, index + 1, items, index, size - index - 1);
 
-        modCount--;
+        modCount++;
         size--;
 
         return oldElement;
@@ -209,6 +209,7 @@ public class ArrayList<T> implements List<T> {
             //noinspection unchecked
             return (T1[]) Arrays.copyOf(items, size, a.getClass());
         }
+
         System.arraycopy(items, 0, a, 0, size);
 
         if (a.length > size) {
@@ -240,8 +241,8 @@ public class ArrayList<T> implements List<T> {
 
     @Override
     public boolean addAll(int index, Collection<? extends T> c) {
-        if (index < 0 || index > size - 1) {
-            throw new IllegalArgumentException("Некорректно введен индекс");
+        if (index < 0 || index > size) {
+            throw new IndexOutOfBoundsException("Индекс не должен быть меньше 0 или больше значения, равному длине списка. Текущее значение индекса:  " + index);
         }
 
         if (c.size() > 0) {
@@ -268,7 +269,7 @@ public class ArrayList<T> implements List<T> {
     @Override
     public boolean removeAll(Collection<?> c) {
         if (c.size() > 0) {
-            modCount--;
+            modCount++;
         }
 
         boolean isRemoved = false;
@@ -287,7 +288,7 @@ public class ArrayList<T> implements List<T> {
     @Override
     public boolean retainAll(Collection<?> c) {
         if (c.size() > 0) {
-            modCount--;
+            modCount++;
         }
 
         boolean isRemoved = false;
@@ -311,7 +312,7 @@ public class ArrayList<T> implements List<T> {
         }
 
         size = 0;
-        modCount = 0;
+        modCount++;
     }
 
     @Override
