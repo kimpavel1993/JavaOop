@@ -1,5 +1,8 @@
 package ru.academits.kim.list;
 
+import ru.academits.kim.list_item.ListItem;
+
+import java.util.NoSuchElementException;
 import java.util.Objects;
 
 public class List<T> {
@@ -7,8 +10,6 @@ public class List<T> {
     private int length;
 
     public List() {
-        head = null;
-        length = 0;
     }
 
     public List(T data) {
@@ -20,100 +21,107 @@ public class List<T> {
         return length;
     }
 
-    public T getHeadData() {
+    public T getFirst() {
         if (head == null) {
-            throw new NullPointerException("Этот список пуст");
+            throw new NoSuchElementException("Этот список пуст");
         }
 
         return head.getData();
     }
 
-    private ListItem<T> findByIndex(int index) {
-        if (index < 0 || index > length - 1) {
-            throw new IllegalArgumentException("Некорректно введен индекс");
+    private void checkIndex(int index) {
+        if (index < 0 || index >= length) {
+            throw new IndexOutOfBoundsException("Индекс не должен быть меньше 0 или больше значения, равному длине списка - 1. Текущее значение индекса:  " + index);
         }
+    }
+
+    private ListItem<T> getByIndex(int index) {
+        checkIndex(index);
 
         int i = 0;
 
-        ListItem<T> temp = null;
+        ListItem<T> tempNode = null;
 
         for (ListItem<T> p = head; p != null; p = p.getNext()) {
             if (i == index) {
-                temp = p;
+                tempNode = p;
                 break;
             }
 
             i++;
         }
 
-        return temp;
+        return tempNode;
     }
 
     public T getData(int index) {
-        ListItem<T> node = findByIndex(index);
-
-        return node.getData();
+        return getByIndex(index).getData();
     }
 
     public T setData(int index, T data) {
-        ListItem<T> node = findByIndex(index);
+        ListItem<T> node = getByIndex(index);
         T oldNode = node.getData();
 
         node.setData(data);
 
         return oldNode;
-
     }
 
-    public T removeDataByIndex(int index) {
+    public T removeByIndex(int index) {
+        checkIndex(index);
+
         if (index == 0) {
-            return removeFirstData();
+            return removeFirst();
         }
 
-        ListItem<T> prevNode = findByIndex(index - 1);
-        ListItem<T> node = findByIndex(index);
+        ListItem<T> previousNode = getByIndex(index - 1);
+        ListItem<T> node = previousNode.getNext();
 
         T removedData = node.getData();
-        prevNode.setNext(node.getNext());
+        previousNode.setNext(node.getNext());
 
         length--;
 
         return removedData;
     }
 
-    public void insertDataInHead(T data) {
+    public void addFirst(T data) {
         length++;
 
         head = new ListItem<>(data, head);
     }
 
-    public void insertDataByIndex(T data, int index) {
+    public void insertByIndex(T data, int index) {
+        if (index < 0 || index > length) {
+            throw new IndexOutOfBoundsException("Индекс не должен быть меньше 0 или больше значения, равному длине списка. Текущее значение индекса:  " + index);
+        }
+
         if (index == 0) {
-            insertDataInHead(data);
+            addFirst(data);
             return;
         }
 
         length++;
 
-        ListItem<T> prevNode = findByIndex(index - 1);
+        ListItem<T> previousNode = getByIndex(index - 1);
         ListItem<T> node = new ListItem<>(data);
 
-        node.setNext(prevNode.getNext());
-        prevNode.setNext(node);
+        node.setNext(previousNode.getNext());
+        previousNode.setNext(node);
     }
 
-    public boolean isRemoteNode(T data) {
+    public boolean remove(T data) {
         if (length == 0) {
             return false;
         }
 
         if (Objects.equals(head.getData(), data)) {
-            removeFirstData();
+            removeFirst();
 
             return true;
         }
 
-        for (ListItem<T> p = head, prev = head; p != null; prev = p, p = p.getNext()) {
+        for (ListItem<T> p = head.getNext(), prev = head; p != null; prev = p, p = p.getNext()) {
             if (Objects.equals(p.getData(), data)) {
                 prev.setNext(p.getNext());
 
@@ -126,9 +134,9 @@ public class List<T> {
         return false;
     }
 
-    public T removeFirstData() {
+    public T removeFirst() {
         if (head == null) {
-            throw new NullPointerException("Этот список пуст");
+            throw new NoSuchElementException("Этот список пуст");
         }
 
         T oldData = head.getData();
@@ -140,14 +148,18 @@ public class List<T> {
     }
 
     public void turn() {
-        ListItem<T> prevNode = head;
-        ListItem<T> node = prevNode.getNext();
+        if (length <= 1) {
+            return;
+        }
+
+        ListItem<T> previousNode = head;
+        ListItem<T> node = previousNode.getNext();
         ListItem<T> nextNode = node.getNext();
 
         int i = 0;
 
         for (ListItem<T> p = head; p != null; p = p.getNext()) {
-            prevNode.setNext(nextNode);
+            previousNode.setNext(nextNode);
             node.setNext(head);
             head = node;
             node = nextNode;
@@ -162,23 +174,23 @@ public class List<T> {
         }
     }
 
-    public void copy() {
+    public List<T> copy() {
         if (length == 0) {
-            new List<>();
-            return;
+            return new List<>();
         }
 
         List<T> cloneList = new List<>(head.getData());
 
-        ListItem<T> prevNode = cloneList.head;
-        ListItem<T> nextNode = head.getNext();
+        ListItem<T> cloneNode = cloneList.head;
 
-        ListItem<T> node = new ListItem<>(nextNode.getData());
+        for (ListItem<T> p = head.getNext(); p != null; p = p.getNext()) {
+            ListItem<T> node = new ListItem<>(p.getData());
 
-        for (ListItem<T> p = head; p != null; p = p.getNext()) {
-            prevNode.setNext(node);
-            prevNode = node;
+            cloneNode.setNext(node);
+            cloneNode = node;
         }
+
+        return cloneList;
     }
 
     @Override

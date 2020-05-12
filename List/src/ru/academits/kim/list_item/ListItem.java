@@ -1,4 +1,4 @@
-package ru.academits.kim.list;
+package ru.academits.kim.list_item;
 
 public class ListItem<T> {
     private T data;
