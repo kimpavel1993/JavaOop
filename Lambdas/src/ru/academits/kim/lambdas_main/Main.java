@@ -23,11 +23,11 @@ public class Main {
 
         System.out.println("Список уникальных имен: " + uniqueNames);
 
-        String uniqueNamesInFormat = list.stream()
+        String uniqueNamesFormat = list.stream()
                 .map(Person::getName)
                 .distinct()
                 .collect(Collectors.joining(", "));
-        System.out.println("Имена: " + uniqueNamesInFormat);
+        System.out.println("Имена: " + uniqueNamesFormat);
 
         List<String> personsUnder18 = list.stream()
                 .filter(p -> p.getAge() < 18)
