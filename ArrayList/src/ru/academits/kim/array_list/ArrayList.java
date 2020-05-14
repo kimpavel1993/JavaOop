@@ -99,8 +99,8 @@ public class ArrayList<T> implements List<T> {
 
     @Override
     public void add(int index, T element) {
-        if (index < 0 || index >= size) {
-            throw new IndexOutOfBoundsException("Индекс не должен быть меньше 0 или больше значения, равному длине списка - 1. Текущее значение индекса:  " + index);
+        if (index < 0 || index > size) {
+            throw new IndexOutOfBoundsException("Индекс не должен быть меньше 0 или больше значения, равному длине списка. Текущее значение индекса:  " + index);
         }
 
         System.arraycopy(items, index, items, index + 1, size - index);
