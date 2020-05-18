@@ -9,14 +9,14 @@ import java.util.Scanner;
 public class ArrayListHome {
     public static void main(String[] args) {
         try (Scanner scanner = new Scanner(new FileInputStream("input.txt"))) {
-            ArrayList<String> listStringsFromFile = new ArrayList<>();
+            ArrayList<String> fileStringsList = new ArrayList<>();
 
             while (scanner.hasNextLine()) {
-                listStringsFromFile.add(scanner.nextLine());
+                fileStringsList.add(scanner.nextLine());
             }
 
             System.out.println("Все строки из файла: ");
-            System.out.println(listStringsFromFile);
+            System.out.println(fileStringsList);
         } catch (FileNotFoundException e) {
             System.out.println("Файл не найден");
         }
@@ -34,17 +34,17 @@ public class ArrayListHome {
 
         System.out.println("Список без четных чисел: " + numbers);
 
-        ArrayList<Integer> listNumbers = new ArrayList<>(Arrays.asList(1, 5, 2, 1, 3, 5));
-        ArrayList<Integer> listNumbersWithoutRepeats = new ArrayList<>();
+        ArrayList<Integer> numbersList = new ArrayList<>(Arrays.asList(1, 5, 2, 1, 3, 5));
+        ArrayList<Integer> numbersListWithoutRepeats = new ArrayList<>();
 
-        System.out.println("Список из чисел: " + listNumbers);
+        System.out.println("Список из чисел: " + numbersList);
 
-        for (Integer e : listNumbers) {
-            if (!listNumbersWithoutRepeats.contains(e)) {
-                listNumbersWithoutRepeats.add(e);
+        for (Integer e : numbersList) {
+            if (!numbersListWithoutRepeats.contains(e)) {
+                numbersListWithoutRepeats.add(e);
             }
         }
 
-        System.out.println("Список из чисел без повторений: " + listNumbersWithoutRepeats);
+        System.out.println("Список из чисел без повторений: " + numbersListWithoutRepeats);
     }
 }
