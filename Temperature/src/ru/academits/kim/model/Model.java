@@ -19,9 +19,9 @@ public class Model {
 
     }
 
-    public int getScaleIndex(String scaleName) {
+    public int getScaleIndex(String nameScale) {
         for (int i = 0; i < scales.length; i++) {
-            if (scaleName.equals(scales[i].getName())) {
+            if (nameScale.equals(scales[i].getName())) {
                 return i;
             }
         }
