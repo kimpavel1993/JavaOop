@@ -25,7 +25,7 @@ public class Main {
         System.out.println("Длина списка: " + numbersList.size());
         System.out.println("Пустой ли массив: " + numbersList.isEmpty());
 
-        Iterator iterator = numbersList.iterator();
+        Iterator<?> iterator = numbersList.iterator();
 
         System.out.println("Список по элементам:");
 
