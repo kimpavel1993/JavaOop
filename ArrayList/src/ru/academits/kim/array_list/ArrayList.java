@@ -9,7 +9,7 @@ public class ArrayList<T> implements List<T> {
 
     public ArrayList(int capacity) {
         if (capacity < 0) {
-            throw new IllegalArgumentException("Введена вместимость меньше 0");
+            throw new IllegalArgumentException("Введена вместимость меньше 0. Текущее значение вместимости: " + capacity);
         }
 
         //noinspection unchecked
@@ -35,9 +35,9 @@ public class ArrayList<T> implements List<T> {
         return size == 0;
     }
 
-    private class ListIterator implements Iterator<T> {
+    private class MyListIterator implements Iterator<T> {
         private int currentIndex = -1;
-        private int currentModCount = modCount;
+        private final int currentModCount = modCount;
 
         @Override
         public boolean hasNext() {
@@ -46,7 +46,7 @@ public class ArrayList<T> implements List<T> {
 
         @Override
         public T next() {
-            if (currentIndex + 1 >= size) {
+            if (!hasNext()) {
                 throw new NoSuchElementException("Коллекция кончилась");
             }
 
@@ -61,23 +61,25 @@ public class ArrayList<T> implements List<T> {
 
     @Override
     public Iterator<T> iterator() {
-        return new ListIterator();
+        return new MyListIterator();
+    }
+
+    private void checkIndex(int index) {
+        if (index < 0 || index >= size) {
+            throw new IndexOutOfBoundsException("Индекс не должен быть меньше 0 или больше значения, равному " + (size - 1) + ". Текущее значение индекса:  " + index);
+        }
     }
 
     @Override
     public T get(int index) {
-        if (index < 0 || index >= size) {
-            throw new IndexOutOfBoundsException("Индекс не должен быть меньше 0 или больше значения, равному длине списка - 1. Текущее значение индекса:  " + index);
-        }
+        checkIndex(index);
 
         return items[index];
     }
 
     @Override
     public T set(int index, T element) {
-        if (index < 0 || index >= size) {
-            throw new IndexOutOfBoundsException("Индекс не должен быть меньше 0 или больше значения, равному длине списка - 1. Текущее значение индекса:  " + index);
-        }
+        checkIndex(index);
 
         T oldElement = items[index];
         items[index] = element;
@@ -100,7 +102,11 @@ public class ArrayList<T> implements List<T> {
     @Override
     public void add(int index, T element) {
         if (index < 0 || index > size) {
-            throw new IndexOutOfBoundsException("Индекс не должен быть меньше 0 или больше значения, равному длине списка. Текущее значение индекса:  " + index);
+            throw new IndexOutOfBoundsException("Индекс не должен быть меньше 0 или больше значения, равному " + size + ". Текущее значение индекса:  " + index);
+        }
+
+        if (size == items.length) {
+            ensureCapacity(items.length + 10);
         }
 
         System.arraycopy(items, index, items, index + 1, size - index);
@@ -113,13 +119,13 @@ public class ArrayList<T> implements List<T> {
 
     @Override
     public T remove(int index) {
-        if (index < 0 || index >= size) {
-            throw new IndexOutOfBoundsException("Индекс не должен быть меньше 0 или больше значения, равному длине списка - 1. Текущее значение индекса:  " + index);
-        }
+        checkIndex(index);
 
         T oldElement = items[index];
 
         System.arraycopy(items, index + 1, items, index, size - index - 1);
+
+        items[size - 1] = null;
 
         modCount++;
         size--;
@@ -129,31 +135,18 @@ public class ArrayList<T> implements List<T> {
 
 
     @Override
-    public boolean add(T t) {
-        if (size == 0) {
-            ensureCapacity(1);
-        }
-
-        if (size == items.length) {
-            ensureCapacity(items.length * 2);
-        }
-
-        items[size] = t;
-
-        modCount++;
-        size++;
+    public boolean add(T element) {
+        add(size, element);
 
         return true;
     }
 
     @Override
     public boolean remove(Object o) {
-        for (int i = 0; i < size; i++) {
-            if (Objects.equals(items[i], o)) {
-                remove(i);
+        if (indexOf(o) > -1) {
+            remove(indexOf(o));
 
-                return true;
-            }
+            return true;
         }
 
         return false;
@@ -189,8 +182,8 @@ public class ArrayList<T> implements List<T> {
 
     @Override
     public boolean containsAll(Collection<?> c) {
-        for (Object cItems : c) {
-            if (!contains(cItems)) {
+        for (Object cItem : c) {
+            if (!contains(cItem)) {
                 return false;
             }
         }
@@ -221,36 +214,19 @@ public class ArrayList<T> implements List<T> {
 
     @Override
     public boolean addAll(Collection<? extends T> c) {
-        if (c.size() > 0) {
-            modCount++;
-        }
+        addAll(size, c);
 
-        ensureCapacity(size + c.size());
-
-        int indexOfAddedItem = size;
-
-        for (T cItem : c) {
-            items[indexOfAddedItem] = cItem;
-            indexOfAddedItem++;
-        }
-
-        size += c.size();
-
-        return c.size() > 0;
+        return true;
     }
 
     @Override
     public boolean addAll(int index, Collection<? extends T> c) {
         if (index < 0 || index > size) {
-            throw new IndexOutOfBoundsException("Индекс не должен быть меньше 0 или больше значения, равному длине списка. Текущее значение индекса:  " + index);
+            throw new IndexOutOfBoundsException("Индекс не должен быть меньше 0 или больше значения, равному " + size + ". Текущее значение индекса:  " + index);
         }
 
-        if (c.size() > 0) {
-            modCount++;
-        }
-
-        if (index == size) {
-            return addAll(c);
+        if (c.size() == 0) {
+            throw new IllegalArgumentException("Добавляемая коллекция пуста");
         }
 
         ensureCapacity(size + c.size());
@@ -262,14 +238,15 @@ public class ArrayList<T> implements List<T> {
         }
 
         size += c.size();
+        modCount++;
 
-        return c.size() > 0;
+        return true;
     }
 
     @Override
     public boolean removeAll(Collection<?> c) {
-        if (c.size() > 0) {
-            modCount++;
+        if (c.size() == 0) {
+            throw new IllegalArgumentException("Удаляемая коллекция пуста");
         }
 
         boolean isRemoved = false;
@@ -282,13 +259,16 @@ public class ArrayList<T> implements List<T> {
                 isRemoved = true;
             }
         }
+
+        modCount++;
+
         return isRemoved;
     }
 
     @Override
     public boolean retainAll(Collection<?> c) {
-        if (c.size() > 0) {
-            modCount++;
+        if (c.size() == 0) {
+            throw new IllegalArgumentException("Сохраняемая коллекция пуста");
         }
 
         boolean isRemoved = false;
@@ -301,6 +281,11 @@ public class ArrayList<T> implements List<T> {
                 isRemoved = true;
             }
         }
+
+        if (c.size() < size) {
+            modCount++;
+        }
+
         return isRemoved;
     }
 
@@ -316,12 +301,12 @@ public class ArrayList<T> implements List<T> {
     }
 
     @Override
-    public java.util.ListIterator<T> listIterator() {
+    public ListIterator<T> listIterator() {
         return null;
     }
 
     @Override
-    public java.util.ListIterator<T> listIterator(int index) {
+    public ListIterator<T> listIterator(int index) {
         return null;
     }
 

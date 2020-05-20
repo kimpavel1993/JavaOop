@@ -10,6 +10,7 @@ public class Main {
         Integer[] numbers = {1, 2, 3, 4, 5, 4};
 
         ArrayList<Integer> numbersList = new ArrayList<>(numbers);
+        numbersList.add(6,8);
 
         System.out.println(numbersList);
 
@@ -37,6 +38,8 @@ public class Main {
         System.out.println("Изменение элемента по индексу: " + numbersList.set(0, 100));
         System.out.println("Удаление элемента по индексу (выдает значение старого элемента): " + numbersList.remove(2));
         System.out.println("Был ли добавлен элемент в конец списка: " + numbersList.add(7));
+        System.out.println("Удаление элемента по индексу (выдает значение старого элемента): " + listStrings.remove("3"));
+        System.out.println(listStrings);
         System.out.println("Индекс первого вхождения элемента: " + numbersList.indexOf(10));
         System.out.println("Индекс последнего вхождения элемента: " + numbersList.lastIndexOf(4));
         System.out.println("Наличие элемента в списке: " + numbersList.contains(4));
