@@ -1,7 +1,5 @@
 package ru.academits.kim.list;
 
-import ru.academits.kim.list_item.ListItem;
-
 import java.util.NoSuchElementException;
 import java.util.Objects;
 
@@ -31,7 +29,7 @@ public class List<T> {
 
     private void checkIndex(int index) {
         if (index < 0 || index >= length) {
-            throw new IndexOutOfBoundsException("Индекс не должен быть меньше 0 или больше значения, равному длине списка - 1. Текущее значение индекса:  " + index);
+            throw new IndexOutOfBoundsException("Индекс не должен быть меньше 0 или больше значения, равному " + (length - 1) + ". Текущее значение индекса:  " + index);
         }
     }
 
@@ -40,18 +38,18 @@ public class List<T> {
 
         int i = 0;
 
-        ListItem<T> tempNode = null;
+        ListItem<T> node = null;
 
         for (ListItem<T> p = head; p != null; p = p.getNext()) {
             if (i == index) {
-                tempNode = p;
+                node = p;
                 break;
             }
 
             i++;
         }
 
-        return tempNode;
+        return node;
     }
 
     public T getData(int index) {
@@ -60,11 +58,11 @@ public class List<T> {
 
     public T setData(int index, T data) {
         ListItem<T> node = getByIndex(index);
-        T oldNode = node.getData();
+        T oldData = node.getData();
 
         node.setData(data);
 
-        return oldNode;
+        return oldData;
     }
 
     public T removeByIndex(int index) {
@@ -93,7 +91,7 @@ public class List<T> {
 
     public void insertByIndex(T data, int index) {
         if (index < 0 || index > length) {
-            throw new IndexOutOfBoundsException("Индекс не должен быть меньше 0 или больше значения, равному длине списка. Текущее значение индекса:  " + index);
+            throw new IndexOutOfBoundsException("Индекс не должен быть меньше 0 или больше значения, равному " + length + ". Текущее значение индекса:  " + index);
         }
 
         if (index == 0) {
@@ -179,18 +177,18 @@ public class List<T> {
             return new List<>();
         }
 
-        List<T> cloneList = new List<>(head.getData());
+        List<T> clonedList = new List<>(head.getData());
 
-        ListItem<T> cloneNode = cloneList.head;
+        ListItem<T> clonedNode = clonedList.head;
 
         for (ListItem<T> p = head.getNext(); p != null; p = p.getNext()) {
             ListItem<T> node = new ListItem<>(p.getData());
 
-            cloneNode.setNext(node);
-            cloneNode = node;
+            clonedNode.setNext(node);
+            clonedNode = node;
         }
 
-        return cloneList;
+        return clonedList;
     }
 
     @Override

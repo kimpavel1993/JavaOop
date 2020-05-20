@@ -1,6 +1,6 @@
-package ru.academits.kim.list_item;
+package ru.academits.kim.list;
 
-public class ListItem<T> {
+class ListItem<T> {
     private T data;
     private ListItem<T> next;
 
