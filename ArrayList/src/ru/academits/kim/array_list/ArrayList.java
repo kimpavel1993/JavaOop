@@ -260,7 +260,9 @@ public class ArrayList<T> implements List<T> {
             }
         }
 
-        modCount++;
+        if (isRemoved) {
+            modCount++;
+        }
 
         return isRemoved;
     }
@@ -282,7 +284,7 @@ public class ArrayList<T> implements List<T> {
             }
         }
 
-        if (c.size() < size) {
+        if (c.size() != size) {
             modCount++;
         }
 
