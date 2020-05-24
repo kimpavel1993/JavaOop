@@ -14,7 +14,7 @@ public class Model {
         return outputTemperature;
     }
 
-    public void setOutputTemperature(double outputTemperature) {
+    private void setOutputTemperature(double outputTemperature) {
         this.outputTemperature = outputTemperature;
 
     }
