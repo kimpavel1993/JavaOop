@@ -10,7 +10,7 @@ public class Main {
         Integer[] numbers = {1, 2, 3, 4, 5, 4};
 
         ArrayList<Integer> numbersList = new ArrayList<>(numbers);
-        numbersList.add(6,8);
+        numbersList.add(6, 8);
 
         System.out.println(numbersList);
 
