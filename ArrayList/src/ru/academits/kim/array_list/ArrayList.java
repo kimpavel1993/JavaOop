@@ -105,6 +105,10 @@ public class ArrayList<T> implements List<T> {
             throw new IndexOutOfBoundsException("Индекс не должен быть меньше 0 или больше значения, равного " + size + ". Текущее значение индекса:  " + index);
         }
 
+        if (size == items.length) {
+            ensureCapacity(items.length + 10);
+        }
+
         if (size > items.length) {
             ensureCapacity(items.length * 2);
         }
