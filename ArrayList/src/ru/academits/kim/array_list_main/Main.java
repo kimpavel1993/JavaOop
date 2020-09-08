@@ -46,7 +46,7 @@ public class Main {
 
         System.out.println("Список: " + numbersList);
 
-        Integer[] numbers2 = {2, 3, 4};
+        Integer[] numbers2 = {22, 33, 44};
         ArrayList<Integer> numbersList2 = new ArrayList<>(numbers2);
 
         System.out.println("Наличие списка в списке: " + numbersList.containsAll(numbersList2));

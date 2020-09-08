@@ -1,12 +1,12 @@
 package ru.academits.kim.model;
 
-import ru.academits.kim.scales.Scales;
+import ru.academits.kim.scale.Scale;
 
 public class Model {
     private double outputTemperature;
-    private final Scales[] scales;
+    private final Scale[] scales;
 
-    public Model(Scales[] scales) {
+    public Model(Scale[] scales) {
         this.scales = scales;
     }
 
@@ -16,7 +16,6 @@ public class Model {
 
     private void setOutputTemperature(double outputTemperature) {
         this.outputTemperature = outputTemperature;
-
     }
 
     public int getScaleIndex(String nameScale) {
@@ -25,6 +24,7 @@ public class Model {
                 return i;
             }
         }
+
         return -1;
     }
 

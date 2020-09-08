@@ -1,7 +1,7 @@
 package ru.academits.kim.view;
 
 import ru.academits.kim.model.*;
-import ru.academits.kim.scales.Scales;
+import ru.academits.kim.scale.Scale;
 
 import javax.swing.*;
 import java.awt.*;
@@ -19,10 +19,10 @@ public class View {
     private final JComboBox<String> resultComboBox = new JComboBox<>();
     private final Model model;
 
-    public View(Scales[] scales, Model model) {
+    public View(Scale[] scales, Model model) {
         this.model = model;
 
-        for (Scales scale : scales) {
+        for (Scale scale : scales) {
             initialComboBox.addItem(scale.getName());
             resultComboBox.addItem(scale.getName());
         }
@@ -33,7 +33,7 @@ public class View {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         frame.setLocationRelativeTo(null);
-        frame.setResizable(true);
+        frame.setResizable(false);
         frame.setVisible(true);
     }
 

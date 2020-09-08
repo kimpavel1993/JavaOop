@@ -105,11 +105,9 @@ public class ArrayList<T> implements List<T> {
             throw new IndexOutOfBoundsException("Индекс не должен быть меньше 0 или больше значения, равного " + size + ". Текущее значение индекса:  " + index);
         }
 
-        if (size == items.length) {
-            ensureCapacity(items.length + 10);
-        }
-
-        if (size > items.length) {
+        if (size == 0) {
+            ensureCapacity(items.length + 1);
+        } else if (size >= items.length) {
             ensureCapacity(items.length * 2);
         }
 
@@ -136,7 +134,6 @@ public class ArrayList<T> implements List<T> {
 
         return oldElement;
     }
-
 
     @Override
     public boolean add(T element) {
@@ -205,7 +202,6 @@ public class ArrayList<T> implements List<T> {
     @Override
     public <T1> T1[] toArray(T1[] a) {
         if (a.length < size) {
-
             //noinspection unchecked
             return (T1[]) Arrays.copyOf(items, size, a.getClass());
         }
@@ -222,10 +218,6 @@ public class ArrayList<T> implements List<T> {
 
     @Override
     public boolean addAll(Collection<? extends T> c) {
-        if (c.size() == 0) {
-            return false;
-        }
-
         addAll(size, c);
 
         return true;
@@ -244,10 +236,12 @@ public class ArrayList<T> implements List<T> {
         ensureCapacity(size + c.size());
         System.arraycopy(items, index, items, index + c.size(), size - index);
 
-        Object[] a = c.toArray();
+        int cIndex = index;
 
-        //noinspection SuspiciousSystemArraycopy
-        System.arraycopy(a, 0, items, index, a.length);
+        for (T cItem : c) {
+            items[cIndex] = cItem;
+            cIndex++;
+        }
 
         size += c.size();
         modCount++;
@@ -258,7 +252,7 @@ public class ArrayList<T> implements List<T> {
     @Override
     public boolean removeAll(Collection<?> c) {
         if (c.size() == 0) {
-            return true;
+            return false;
         }
 
         boolean isRemoved = false;
@@ -282,6 +276,8 @@ public class ArrayList<T> implements List<T> {
     @Override
     public boolean retainAll(Collection<?> c) {
         if (c.size() == 0) {
+            clear();
+
             return true;
         }
 

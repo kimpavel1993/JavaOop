@@ -1,6 +1,6 @@
-package ru.academits.kim.scales;
+package ru.academits.kim.scale;
 
-public interface Scales {
+public interface Scale {
     String getName();
 
     double convertToCelsius(double inputTemperature);
