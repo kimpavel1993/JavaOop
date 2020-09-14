@@ -1,6 +1,6 @@
 package ru.academits.kim.scale;
 
-public class Fahrenheit implements Scale {
+public class FahrenheitScale implements Scale {
     @Override
     public String getName() {
         return "Градусы Фаренгейта";

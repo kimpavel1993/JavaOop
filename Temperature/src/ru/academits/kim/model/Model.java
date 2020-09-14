@@ -3,34 +3,24 @@ package ru.academits.kim.model;
 import ru.academits.kim.scale.Scale;
 
 public class Model {
-    private double outputTemperature;
     private final Scale[] scales;
 
     public Model(Scale[] scales) {
         this.scales = scales;
     }
 
-    public double getOutputTemperature() {
-        return outputTemperature;
-    }
-
-    private void setOutputTemperature(double outputTemperature) {
-        this.outputTemperature = outputTemperature;
-    }
-
-    public int getScaleIndex(String nameScale) {
-        for (int i = 0; i < scales.length; i++) {
-            if (nameScale.equals(scales[i].getName())) {
-                return i;
+    public Scale getScale(String nameScale) {
+        for (Scale e : scales) {
+            if (nameScale.equals(e.getName())) {
+                return e;
             }
         }
-
-        return -1;
+        return null;
     }
 
-    public void convert(double inputTemperature, int scaleIndexFrom, int scaleIndexTo) {
-        double celsiusValue = scales[scaleIndexFrom].convertToCelsius(inputTemperature);
+    public double convert(double inputTemperature, Scale scaleFrom, Scale scaleTo) {
+        double celsiusValue = scaleFrom.convertToCelsius(inputTemperature);
 
-        setOutputTemperature(scales[scaleIndexTo].convertFromCelsius(celsiusValue));
+        return scaleTo.convertFromCelsius(celsiusValue);
     }
 }

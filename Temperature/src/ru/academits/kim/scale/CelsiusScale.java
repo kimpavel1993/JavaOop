@@ -1,18 +1,18 @@
 package ru.academits.kim.scale;
 
-public class Kelvin implements Scale {
+public class CelsiusScale implements Scale {
     @Override
     public String getName() {
-        return "Градусы Кельвина";
+        return "Градусы Цельсия";
     }
 
     @Override
     public double convertToCelsius(double inputTemperature) {
-        return inputTemperature - 273.15;
+        return inputTemperature;
     }
 
     @Override
     public double convertFromCelsius(double inputTemperature) {
-        return inputTemperature + 273.15;
+        return inputTemperature;
     }
 }
