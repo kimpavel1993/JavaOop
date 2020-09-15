@@ -28,7 +28,7 @@ public class View {
         }
     }
 
-    private void initialFrame() {
+    private void startInitFrame() {
         frame.setSize(550, 300);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -37,7 +37,7 @@ public class View {
         frame.setVisible(true);
     }
 
-    private void initialContent() {
+    private void startInitContent() {
         GridBagLayout gbl = new GridBagLayout();
 
         panel.setLayout(gbl);
@@ -134,7 +134,7 @@ public class View {
         frame.setContentPane(panel);
     }
 
-    private void initialEvents() {
+    private void startInitEvents() {
         resultButton.addActionListener(e -> {
             try {
                 double inputTemperature = Double.parseDouble(initialTextField.getText());
@@ -159,9 +159,9 @@ public class View {
 
     public void run() {
         SwingUtilities.invokeLater(() -> {
-            initialFrame();
-            initialContent();
-            initialEvents();
+            startInitFrame();
+            startInitContent();
+            startInitEvents();
         });
     }
 }
