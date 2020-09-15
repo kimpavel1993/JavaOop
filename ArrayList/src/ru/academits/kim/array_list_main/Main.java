@@ -7,12 +7,12 @@ import java.util.Iterator;
 
 public class Main {
     public static void main(String[] args) {
-        Integer[] numbers = {1, 2, 3, 4, 5, 4};
+        Integer[] numbers1 = {1, 2, 3, 4, 5, 4};
 
-        ArrayList<Integer> numbersList = new ArrayList<>(numbers);
-        numbersList.add(6, 8);
+        ArrayList<Integer> numbersList1 = new ArrayList<>(numbers1);
+        numbersList1.add(6, 8);
 
-        System.out.println(numbersList);
+        System.out.println(numbersList1);
 
         ArrayList<String> listStrings = new ArrayList<>(100);
         listStrings.add("One");
@@ -23,10 +23,10 @@ public class Main {
 
         System.out.print(listStrings);
 
-        System.out.println("Длина списка: " + numbersList.size());
-        System.out.println("Пустой ли массив: " + numbersList.isEmpty());
+        System.out.println("Длина списка: " + numbersList1.size());
+        System.out.println("Пустой ли массив: " + numbersList1.isEmpty());
 
-        Iterator<?> iterator = numbersList.iterator();
+        Iterator<?> iterator = numbersList1.iterator();
 
         System.out.println("Список по элементам:");
 
@@ -34,44 +34,44 @@ public class Main {
             System.out.println(iterator.next());
         }
 
-        System.out.println("Получение элемента по индексу: " + numbersList.get(1));
-        System.out.println("Изменение элемента по индексу: " + numbersList.set(0, 100));
-        System.out.println("Удаление элемента по индексу (выдает значение старого элемента): " + numbersList.remove(2));
-        System.out.println("Был ли добавлен элемент в конец списка: " + numbersList.add(7));
+        System.out.println("Получение элемента по индексу: " + numbersList1.get(1));
+        System.out.println("Изменение элемента по индексу: " + numbersList1.set(0, 100));
+        System.out.println("Удаление элемента по индексу (выдает значение старого элемента): " + numbersList1.remove(2));
+        System.out.println("Был ли добавлен элемент в конец списка: " + numbersList1.add(7));
         System.out.println("Удаление элемента по индексу (выдает значение старого элемента): " + listStrings.remove("3"));
         System.out.println(listStrings);
-        System.out.println("Индекс первого вхождения элемента: " + numbersList.indexOf(10));
-        System.out.println("Индекс последнего вхождения элемента: " + numbersList.lastIndexOf(4));
-        System.out.println("Наличие элемента в списке: " + numbersList.contains(4));
+        System.out.println("Индекс первого вхождения элемента: " + numbersList1.indexOf(10));
+        System.out.println("Индекс последнего вхождения элемента: " + numbersList1.lastIndexOf(4));
+        System.out.println("Наличие элемента в списке: " + numbersList1.contains(4));
 
-        System.out.println("Список: " + numbersList);
+        System.out.println("Список: " + numbersList1);
 
         Integer[] numbers2 = {22, 33, 44};
         ArrayList<Integer> numbersList2 = new ArrayList<>(numbers2);
 
-        System.out.println("Наличие списка в списке: " + numbersList.containsAll(numbersList2));
-        System.out.println("Преобразование списка в массив: " + Arrays.toString(numbersList.toArray()));
+        System.out.println("Наличие списка в списке: " + numbersList1.containsAll(numbersList2));
+        System.out.println("Преобразование списка в массив: " + Arrays.toString(numbersList1.toArray()));
 
         Integer[] numbers3 = {34, 88, 92, 232, 542, 755, 23, 34, 666, 1, 2, 7, 5, 343};
 
-        System.out.println("Преобразование списка в массив с добавлением элементов массива: " + Arrays.toString(numbersList.toArray(numbers3)));
+        System.out.println("Преобразование списка в массив с добавлением элементов массива: " + Arrays.toString(numbersList1.toArray(numbers3)));
 
-        System.out.println("Наличие добавленных элементов в списке: " + numbersList.addAll(numbersList2));
-        System.out.println("Список с добавленными элементами: " + numbersList);
+        System.out.println("Наличие добавленных элементов в списке: " + numbersList1.addAll(numbersList2));
+        System.out.println("Список с добавленными элементами: " + numbersList1);
 
-        System.out.println("Наличие добавленных элементов по индексу в списке: " + numbersList.addAll(2, numbersList2));
-        System.out.println("Список с добавленными элементами: " + numbersList);
+        System.out.println("Наличие добавленных элементов по индексу в списке: " + numbersList1.addAll(2, numbersList2));
+        System.out.println("Список с добавленными элементами: " + numbersList1);
 
-        System.out.println("Наличие удаленных элементов в списке: " + numbersList.removeAll(numbersList2));
-        System.out.println("Список с удаленными элементами: " + numbersList);
+       System.out.println("Наличие удаленных элементов в списке: " + numbersList1.removeAll(numbersList2));
+        System.out.println("Список с удаленными элементами: " + numbersList1);
 
         Integer[] numbers4 = {7, 5};
         ArrayList<Integer> numbersList4 = new ArrayList<>(numbers4);
 
-        System.out.println("Сохранение только указанных элементов в списке: " + numbersList.retainAll(numbersList4));
-        System.out.println("Список только с указанными элементами: " + numbersList);
+        System.out.println("Сохранение только указанных элементов в списке: " + numbersList1.retainAll(numbersList4));
+        System.out.println("Список только с указанными элементами: " + numbersList1);
 
-        numbersList.clear();
-        System.out.println("Очищение списка: " + numbersList);
+        numbersList1.clear();
+        System.out.println("Очищение списка: " + numbersList1);
     }
 }
