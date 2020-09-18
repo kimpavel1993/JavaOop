@@ -9,6 +9,7 @@ public class Matrix {
         if (n <= 0 || m <= 0) {
             throw new IllegalArgumentException("Неверные входные данные. Необходимо, чтобы размерность столбцов и строк была > 0. Размерность строк: " + n + "Размерность столбцов: " + m);
         }
+
         arrayVectors = new Vector[n];
 
         for (int i = 0; i < n; i++) {
@@ -170,8 +171,6 @@ public class Matrix {
         if (matrix1.getColumnsNumber() != matrix2.getLinesNumber()) {
             throw new IllegalArgumentException("Размерность столбцов матрицы должна совпадать с размерность строк другой матрицы. У первой матрицы размерность столбцов: " + matrix1.getColumnsNumber() + ", размерность строк второй матрицы: " + matrix2.getLinesNumber());
         }
-
-
     }*/
 
 

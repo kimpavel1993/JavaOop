@@ -57,4 +57,3 @@ public class Main {
         System.out.println("Разность матриц: " + Matrix.getDifference(matrix2, matrix5));
     }
 }
-
