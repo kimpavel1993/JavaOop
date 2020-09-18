@@ -55,11 +55,6 @@ public class Main {
 
         System.out.println("Сложение матриц: " + Matrix.getSum(matrix2, matrix2));
         System.out.println("Разность матриц: " + Matrix.getDifference(matrix2, matrix5));
-
-
-
-
     }
-
 }
 
