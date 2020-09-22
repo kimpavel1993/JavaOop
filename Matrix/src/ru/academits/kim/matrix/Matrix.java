@@ -128,6 +128,20 @@ public class Matrix {
             e.multiplyByScalar(scalar);
         }
     }
+    
+    public Vector multiplyByVector(Vector vector) {
+        if (getColumnsNumber() != vector.getSize()) {
+            throw new IllegalArgumentException("Количество столбцов матрицы должно совпадать с размерностью вектора. Количество столбцов матрицы: " + getColumnsNumber() + ", размерность вектора: " + vector.getSize());
+        }
+
+        Vector result = new Vector(getLinesNumber());
+
+        for (int i = 0; i < getLinesNumber(); i++) {
+            result.setComponentByIndex(i, Vector.getScalarProduct(arrayVectors[i], vector));
+        }
+
+        return result;
+    }
 
     private void checkMatrixSize(Matrix matrix) {
         if (matrix.getColumnsNumber() != getColumnsNumber() || matrix.getLinesNumber() != getLinesNumber()) {
@@ -167,12 +181,22 @@ public class Matrix {
         return matrix.subtract(matrix2);
     }
 
-  /*  public static Matrix getMultiply(Matrix matrix1, Matrix matrix2) {
+    public static Matrix getMultiply(Matrix matrix1, Matrix matrix2) {
         if (matrix1.getColumnsNumber() != matrix2.getLinesNumber()) {
             throw new IllegalArgumentException("Размерность столбцов матрицы должна совпадать с размерность строк другой матрицы. У первой матрицы размерность столбцов: " + matrix1.getColumnsNumber() + ", размерность строк второй матрицы: " + matrix2.getLinesNumber());
         }
-    }*/
 
+        Matrix result = new Matrix(matrix1.getLinesNumber(), matrix2.getColumnsNumber());
+
+        for (int i = 0; i < matrix1.getLinesNumber(); i++) {
+            for (int j = 0; j < matrix2.getColumnsNumber(); j++) {
+
+                result.arrayVectors[i].setComponentByIndex(j, Vector.getScalarProduct(matrix1.getLineByIndex(i), matrix2.getColumnByIndex(j)));
+            }
+        }
+
+        return result;
+    }
 
     @Override
     public String toString() {

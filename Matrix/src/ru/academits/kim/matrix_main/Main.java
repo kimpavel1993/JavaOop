@@ -15,10 +15,10 @@ public class Main {
 
         Matrix matrix3 = new Matrix(matrix2);
 
-        double[] vector = {1, 2, 3, 4, 5};
+        double[] componentsVector1 = {1, 2, 3, 4, 5};
 
-        Vector vector1 = new Vector(vector);
-        Vector vector2 = new Vector(8, vector);
+        Vector vector1 = new Vector(componentsVector1);
+        Vector vector2 = new Vector(8, componentsVector1);
         Vector vector3 = new Vector(3);
 
         Vector[] arrayVectors = {vector1, vector2, vector3};
@@ -43,17 +43,27 @@ public class Main {
         matrix2.multiplyByScalar(2);
         System.out.println("Умножение матрицы на скаляр: " + matrix2);
 
-        matrix2.add(matrix2);
-        System.out.println("Сложение матриц: " + matrix2);
+        double[] componentsVector2 = {4, 5, 6};
+        Vector vector4 = new Vector(componentsVector2);
 
         double[][] array2 = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}, {10, 11, 12}, {13, 14, 15}};
 
         Matrix matrix5 = new Matrix(array2);
 
+        System.out.println("Умножение матрицы на вектор: " + matrix5.multiplyByVector(vector4));
+
+        matrix2.add(matrix2);
+        System.out.println("Сложение матриц: " + matrix2);
+
         matrix2.subtract(matrix5);
         System.out.println("Разность матриц: " + matrix2);
 
-        System.out.println("Сложение матриц: " + Matrix.getSum(matrix2, matrix2));
-        System.out.println("Разность матриц: " + Matrix.getDifference(matrix2, matrix5));
+        double[][] array3 = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
+
+        Matrix matrix6 = new Matrix(array3);
+
+        System.out.println("Сложение матриц: " + Matrix.getSum(matrix6, matrix6));
+        System.out.println("Разность матриц: " + Matrix.getDifference(matrix6, matrix6));
+        System.out.println("Произведение матриц: " + Matrix.getMultiply(matrix6, matrix6));
     }
 }
