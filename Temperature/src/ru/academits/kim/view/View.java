@@ -158,11 +158,11 @@ public class View {
             try {
                 double inputTemperature = Double.parseDouble(initialTextField.getText());
 
-                String initialNameScale = (String) initialComboBox.getSelectedItem();
-                String resultNameScale = (String) resultComboBox.getSelectedItem();
+                String initialScaleName = (String) initialComboBox.getSelectedItem();
+                String resultScaleName = (String) resultComboBox.getSelectedItem();
 
-                Scale initialScale = model.getScale(initialNameScale);
-                Scale resultScale = model.getScale(resultNameScale);
+                Scale initialScale = model.getScale(initialScaleName);
+                Scale resultScale = model.getScale(resultScaleName);
 
                 resultTextField.setText(String.format("%.2f", model.convert(inputTemperature, initialScale, resultScale)));
             } catch (NumberFormatException f) {
