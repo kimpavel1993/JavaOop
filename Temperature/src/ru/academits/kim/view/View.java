@@ -7,28 +7,34 @@ import javax.swing.*;
 import java.awt.*;
 
 public class View {
-    private final JFrame frame = new JFrame("Перевод температур");
-    private final JPanel panel = new JPanel();
-    private final JLabel initialLabel = new JLabel("Введите температуру: ");
-    private final JLabel resultLabel = new JLabel("Результат: ");
-    private final JButton resultButton = new JButton("Перевести");
-    private final JButton clearButton = new JButton("Очистить");
-    private final JTextField initialTextField = new JTextField(10);
-    private final JTextField resultTextField = new JTextField(10);
-    private final JComboBox<String> initialComboBox = new JComboBox<>();
-    private final JComboBox<String> resultComboBox = new JComboBox<>();
-    private final Model model;
+    JFrame frame;
+    JPanel panel;
+    JLabel initialLabel;
+    JLabel resultLabel;
+    JButton resultButton;
+    JButton clearButton;
+    JTextField initialTextField;
+    JTextField resultTextField;
+    JComboBox<String> initialComboBox;
+    JComboBox<String> resultComboBox;
+    Model model;
 
-    public View(Scale[] scales, Model model) {
+
+    public View(Model model) {
         this.model = model;
 
-        for (Scale scale : scales) {
-            initialComboBox.addItem(scale.getName());
-            resultComboBox.addItem(scale.getName());
+        initialComboBox = new JComboBox<>();
+        resultComboBox = new JComboBox<>();
+
+        for (int i = 0; i < model.getScaleIndex(); i++) {
+            initialComboBox.addItem(model.getScaleName(i));
+            resultComboBox.addItem(model.getScaleName(i));
         }
     }
 
-    private void startInitFrame() {
+    private void initFrame() {
+        frame = new JFrame("Перевод температур");
+
         frame.setSize(550, 300);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -37,8 +43,10 @@ public class View {
         frame.setVisible(true);
     }
 
-    private void startInitContent() {
+    private void initContent() {
         GridBagLayout gbl = new GridBagLayout();
+
+        panel = new JPanel();
 
         panel.setLayout(gbl);
 
@@ -50,6 +58,8 @@ public class View {
         c1.gridheight = 1;
         c1.anchor = GridBagConstraints.CENTER;
         c1.insets = new Insets(10, 0, 0, 0);
+
+        initialLabel = new JLabel("Введите температуру: ");
 
         panel.add(initialLabel, c1);
 
@@ -73,6 +83,8 @@ public class View {
         c3.anchor = GridBagConstraints.CENTER;
         c3.insets = new Insets(0, 0, 0, 0);
 
+        initialTextField = new JTextField(10);
+
         panel.add(initialTextField, c3);
 
         GridBagConstraints c4 = new GridBagConstraints();
@@ -84,6 +96,8 @@ public class View {
         c4.anchor = GridBagConstraints.CENTER;
         c4.insets = new Insets(0, 10, 0, 0);
 
+        resultButton = new JButton("Перевести");
+
         panel.add(resultButton, c4);
 
         GridBagConstraints c5 = new GridBagConstraints();
@@ -94,6 +108,8 @@ public class View {
         c5.gridheight = 1;
         c5.anchor = GridBagConstraints.CENTER;
         c5.insets = new Insets(0, 10, 0, 0);
+
+        clearButton = new JButton("Очистить");
 
         panel.add(clearButton, c5);
 
@@ -117,6 +133,8 @@ public class View {
         c7.anchor = GridBagConstraints.CENTER;
         c7.insets = new Insets(10, 0, 0, 0);
 
+        resultLabel = new JLabel("Результат: ");
+
         panel.add(resultLabel, c7);
 
         GridBagConstraints c8 = new GridBagConstraints();
@@ -128,15 +146,18 @@ public class View {
         c8.anchor = GridBagConstraints.CENTER;
         c8.insets = new Insets(10, 0, 0, 0);
 
+        resultTextField = new JTextField(10);
+
         resultTextField.setEditable(false);
         panel.add(resultTextField, c8);
 
         frame.setContentPane(panel);
     }
 
-    private void startInitEvents() {
+    private void initEvents() {
         resultButton.addActionListener(e -> {
             try {
+
                 double inputTemperature = Double.parseDouble(initialTextField.getText());
 
                 String initialNameScale = (String) initialComboBox.getSelectedItem();
@@ -159,9 +180,9 @@ public class View {
 
     public void run() {
         SwingUtilities.invokeLater(() -> {
-            startInitFrame();
-            startInitContent();
-            startInitEvents();
+            initFrame();
+            initContent();
+            initEvents();
         });
     }
 }

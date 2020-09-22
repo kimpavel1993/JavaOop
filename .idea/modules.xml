@@ -2,10 +2,17 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/JavaOop.iml" filepath="$PROJECT_DIR$/JavaOop.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Range/Range.iml" filepath="$PROJECT_DIR$/Range/Range.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Shape/Shape.iml" filepath="$PROJECT_DIR$/Shape/Shape.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Vector/Vector.iml" filepath="$PROJECT_DIR$/Vector/Vector.iml" />
+      <module fileurl="file://$PROJECT_DIR$/JavaOop/ArrayList/ArrayList.iml" filepath="$PROJECT_DIR$/JavaOop/ArrayList/ArrayList.iml" />
+      <module fileurl="file://$PROJECT_DIR$/JavaOop/ArrayListHome/ArrayListHome.iml" filepath="$PROJECT_DIR$/JavaOop/ArrayListHome/ArrayListHome.iml" />
+      <module fileurl="file://$PROJECT_DIR$/JavaOop/HashTable/HashTable.iml" filepath="$PROJECT_DIR$/JavaOop/HashTable/HashTable.iml" />
+      <module fileurl="file://$PROJECT_DIR$/JavaOop/JavaOop.iml" filepath="$PROJECT_DIR$/JavaOop/JavaOop.iml" />
+      <module fileurl="file://$PROJECT_DIR$/JavaOop/Lambdas/Lambdas.iml" filepath="$PROJECT_DIR$/JavaOop/Lambdas/Lambdas.iml" />
+      <module fileurl="file://$PROJECT_DIR$/JavaOop/List/List.iml" filepath="$PROJECT_DIR$/JavaOop/List/List.iml" />
+      <module fileurl="file://$PROJECT_DIR$/JavaOop/Matrix/Matrix.iml" filepath="$PROJECT_DIR$/JavaOop/Matrix/Matrix.iml" />
+      <module fileurl="file://$PROJECT_DIR$/JavaOop/Range/Range.iml" filepath="$PROJECT_DIR$/JavaOop/Range/Range.iml" />
+      <module fileurl="file://$PROJECT_DIR$/JavaOop/Shape/Shape.iml" filepath="$PROJECT_DIR$/JavaOop/Shape/Shape.iml" />
+      <module fileurl="file://$PROJECT_DIR$/JavaOop/Temperature/Temperature.iml" filepath="$PROJECT_DIR$/JavaOop/Temperature/Temperature.iml" />
+      <module fileurl="file://$PROJECT_DIR$/JavaOop/Vector/Vector.iml" filepath="$PROJECT_DIR$/JavaOop/Vector/Vector.iml" />
     </modules>
   </component>
 </project>

@@ -9,12 +9,33 @@ public class Model {
         this.scales = scales;
     }
 
-    public Scale getScale(String nameScale) {
+    public int getScaleIndex() {
+        int index = 0;
+
+        for (int i = 0; i < scales.length; i++) {
+            index += i;
+        }
+
+        return index;
+    }
+
+    public String getScaleName(int index) {
+        for (int i = 0; i < getScaleIndex(); i++) {
+            if (i == index) {
+                return scales[index].getName();
+            }
+        }
+
+        return null;
+    }
+
+    public Scale getScale(String scaleName) {
         for (Scale e : scales) {
-            if (nameScale.equals(e.getName())) {
+            if (scaleName.equals(e.getName())) {
                 return e;
             }
         }
+
         return null;
     }
 
