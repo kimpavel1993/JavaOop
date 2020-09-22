@@ -128,7 +128,7 @@ public class Matrix {
             e.multiplyByScalar(scalar);
         }
     }
-    
+
     public Vector multiplyByVector(Vector vector) {
         if (getColumnsNumber() != vector.getSize()) {
             throw new IllegalArgumentException("Количество столбцов матрицы должно совпадать с размерностью вектора. Количество столбцов матрицы: " + getColumnsNumber() + ", размерность вектора: " + vector.getSize());
@@ -197,6 +197,8 @@ public class Matrix {
 
         return result;
     }
+
+    //Определитель не смог посчитать
 
     @Override
     public String toString() {
