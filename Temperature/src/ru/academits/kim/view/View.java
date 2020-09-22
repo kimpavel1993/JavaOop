@@ -19,7 +19,6 @@ public class View {
     JComboBox<String> resultComboBox;
     Model model;
 
-
     public View(Model model) {
         this.model = model;
 
@@ -157,7 +156,6 @@ public class View {
     private void initEvents() {
         resultButton.addActionListener(e -> {
             try {
-
                 double inputTemperature = Double.parseDouble(initialTextField.getText());
 
                 String initialNameScale = (String) initialComboBox.getSelectedItem();
