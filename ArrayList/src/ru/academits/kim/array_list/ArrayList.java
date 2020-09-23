@@ -105,9 +105,11 @@ public class ArrayList<T> implements List<T> {
             throw new IndexOutOfBoundsException("Индекс не должен быть меньше 0 или больше значения, равного " + size + ". Текущее значение индекса:  " + index);
         }
 
-        if (isEmpty()) {
-            ensureCapacity(elements.length + 1);
-        } else if (size >= elements.length) {
+        if (elements.length == 0) {
+            ensureCapacity(1);
+        }
+
+        if (size >= elements.length) {
             ensureCapacity(elements.length * 2);
         }
 
@@ -234,11 +236,11 @@ public class ArrayList<T> implements List<T> {
         ensureCapacity(size + c.size());
         System.arraycopy(elements, index, elements, index + c.size(), size - index);
 
-        int temp = index;
+        int i = index;
 
         for (T cElement : c) {
-            elements[temp] = cElement;
-            temp++;
+            elements[i] = cElement;
+            i++;
         }
 
         size += c.size();
@@ -273,11 +275,11 @@ public class ArrayList<T> implements List<T> {
 
     @Override
     public boolean retainAll(Collection<?> c) {
-        if (c.size() == 0) {
-            if (isEmpty()) {
-                return false;
-            }
+        if (isEmpty()) {
+            return false;
+        }
 
+        if (c.size() == 0) {
             clear();
 
             return true;
