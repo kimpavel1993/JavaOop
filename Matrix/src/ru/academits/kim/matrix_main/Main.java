@@ -30,7 +30,7 @@ public class Main {
         System.out.println("Получение вектора-строки по индексу: " + matrix3.getLineByIndex(1));
 
         matrix2.setRowByIndex(2, vector1);
-        System.out.println("Задание вектора-строки по индексу: " + matrix2);
+        System.out.println("Матрица с заданным вектором-строкой по индексу: " + matrix2);
         System.out.println("Получение вектора-столбца по индексу: " + matrix2.getColumnByIndex(1));
         System.out.println("Матрица до транспонирования: " + matrix2);
 
@@ -65,7 +65,7 @@ public class Main {
         System.out.println("Произведение матриц: " + Matrix.getMultiply(matrix6, matrix6));
 
         double[][] array4 = {{5, 34}, {44, 5, 69}, {2, 82, 1}};
-        
+
         Matrix matrix7 = new Matrix(array4);
 
         System.out.println("Определитель матрицы: " + matrix7.calculateDeterminant());
