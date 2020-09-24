@@ -65,6 +65,5 @@ public class Main {
         System.out.println("Сложение матриц: " + Matrix.getSum(matrix6, matrix6));
         System.out.println("Разность матриц: " + Matrix.getDifference(matrix6, matrix6));
         System.out.println("Произведение матриц: " + Matrix.getMultiply(matrix6, matrix6));
-        
     }
 }
