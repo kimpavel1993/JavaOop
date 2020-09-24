@@ -65,6 +65,7 @@ public class Main {
         System.out.println("Произведение матриц: " + Matrix.getMultiply(matrix6, matrix6));
 
         double[][] array4 = {{5, 34}, {44, 5, 69}, {2, 82, 1}};
+        
         Matrix matrix7 = new Matrix(array4);
 
         System.out.println("Определитель матрицы: " + matrix7.calculateDeterminant());
