@@ -12,7 +12,6 @@ public class Main {
         double[][] array1 = {{1}, {4, 50}, {23, 4, 5, 6, 88}};
 
         Matrix matrix2 = new Matrix(array1);
-
         Matrix matrix3 = new Matrix(matrix2);
 
         double[] componentsVector1 = {1, 2, 3, 4, 5};
@@ -26,14 +25,12 @@ public class Main {
         Matrix matrix4 = new Matrix(arrayVectors);
 
         System.out.println(matrix4);
-
         System.out.println("Количество строк в матрице: " + matrix4.getNumberRows());
         System.out.println("Количество столбцов в матрице: " + matrix4.getNumberColumns());
         System.out.println("Получение вектора-строки по индексу: " + matrix3.getLineByIndex(1));
 
         matrix2.setRowByIndex(2, vector1);
         System.out.println("Задание вектора-строки по индексу: " + matrix2);
-
         System.out.println("Получение вектора-столбца по индексу: " + matrix2.getColumnByIndex(1));
         System.out.println("Матрица до транспонирования: " + matrix2);
 
@@ -44,6 +41,7 @@ public class Main {
         System.out.println("Умножение матрицы на скаляр: " + matrix2);
 
         double[] componentsVector2 = {4, 5, 6};
+
         Vector vector4 = new Vector(componentsVector2);
 
         double[][] array2 = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}, {10, 11, 12}, {13, 14, 15}};
