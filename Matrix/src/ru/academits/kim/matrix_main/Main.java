@@ -63,5 +63,12 @@ public class Main {
         System.out.println("Сложение матриц: " + Matrix.getSum(matrix6, matrix6));
         System.out.println("Разность матриц: " + Matrix.getDifference(matrix6, matrix6));
         System.out.println("Произведение матриц: " + Matrix.getMultiply(matrix6, matrix6));
+
+        double[][] array4 = {{5, 34}, {44, 5, 69}, {2, 82, 1}};
+        Matrix matrix7 = new Matrix(array4);
+
+        System.out.println(matrix7.calculateDeterminant());
+
+
     }
 }

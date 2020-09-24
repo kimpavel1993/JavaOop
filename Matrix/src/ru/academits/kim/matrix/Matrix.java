@@ -208,6 +208,66 @@ public class Matrix {
         return result;
     }
 
+    private int getIndexMaxValue(int index) {
+        Vector column = getColumnByIndex(index);
+
+        double maxValue = 0;
+        int maxIndex = index;
+
+        for (int i = index; i < getNumberRows(); ++i) {
+            if (Math.abs(column.getComponentByIndex(i)) > maxValue) {
+                maxValue = Math.abs(column.getComponentByIndex(i));
+                maxIndex = i;
+            }
+        }
+
+        return maxIndex;
+    }
+
+    public double calculateDeterminant() {
+        if (getNumberRows() == 0) {
+            return 0;
+        }
+
+        if (getNumberRows() != getNumberColumns()) {
+            throw new IllegalArgumentException("Определителя не существует. Размерность строк и столбцов не совпадает. " +
+                    "Текущее значение строк: " + getNumberRows() + ", значение столбцов: " + getNumberColumns());
+        }
+
+        if (getNumberRows() == 1) {
+            return arrayVectors[0].getComponentByIndex(0);
+        }
+
+        int numberPermutationsRows = 0;
+
+        for (int i = 0; i < getNumberRows() - 1; i++) {
+            for (int j = i + 1; j < getNumberColumns(); j++) {
+                if (getIndexMaxValue(i) != i) {
+                    Vector vector = arrayVectors[i];
+                    arrayVectors[i] = arrayVectors[j];
+                    arrayVectors[j] = vector;
+
+                    numberPermutationsRows++;
+                }
+
+                double number = arrayVectors[j].getComponentByIndex(i) / arrayVectors[i].getComponentByIndex(i);
+
+                for (int k = i; k < getNumberColumns(); k++) {
+                    arrayVectors[j].setComponentByIndex(k, arrayVectors[j].getComponentByIndex(k) -
+                            arrayVectors[i].getComponentByIndex(k) * number);
+                }
+            }
+        }
+
+        double determinant = 1;
+
+        for (int i = 0; i < getNumberColumns(); ++i) {
+            determinant *= Math.pow(-1, numberPermutationsRows) * arrayVectors[i].getComponentByIndex(i);
+        }
+
+        return determinant;
+    }
+
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder("{");
