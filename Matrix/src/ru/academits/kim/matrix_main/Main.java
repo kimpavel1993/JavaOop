@@ -27,11 +27,11 @@ public class Main {
 
         System.out.println(matrix4);
 
-        System.out.println("Количество строк в матрице: " + matrix4.getLinesNumber());
-        System.out.println("Количество столбцов в матрице: " + matrix4.getColumnsNumber());
+        System.out.println("Количество строк в матрице: " + matrix4.getNumberRows());
+        System.out.println("Количество столбцов в матрице: " + matrix4.getNumberColumns());
         System.out.println("Получение вектора-строки по индексу: " + matrix3.getLineByIndex(1));
 
-        matrix2.setLineByIndex(2, vector1);
+        matrix2.setRowByIndex(2, vector1);
         System.out.println("Задание вектора-строки по индексу: " + matrix2);
 
         System.out.println("Получение вектора-столбца по индексу: " + matrix2.getColumnByIndex(1));
@@ -65,5 +65,6 @@ public class Main {
         System.out.println("Сложение матриц: " + Matrix.getSum(matrix6, matrix6));
         System.out.println("Разность матриц: " + Matrix.getDifference(matrix6, matrix6));
         System.out.println("Произведение матриц: " + Matrix.getMultiply(matrix6, matrix6));
+        
     }
 }

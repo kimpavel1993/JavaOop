@@ -7,7 +7,8 @@ public class Matrix {
 
     public Matrix(int n, int m) {
         if (n <= 0 || m <= 0) {
-            throw new IllegalArgumentException("Неверные входные данные. Необходимо, чтобы размерность столбцов и строк была > 0. Размерность строк: " + n + "Размерность столбцов: " + m);
+            throw new IllegalArgumentException("Неверные входные данные. Необходимо, чтобы размерность столбцов и строк была > 0. Размерность строк: "
+                    + n + "Размерность столбцов: " + m);
         }
 
         arrayVectors = new Vector[n];
@@ -67,31 +68,34 @@ public class Matrix {
         }
     }
 
-    public int getLinesNumber() {
+    public int getNumberRows() {
         return arrayVectors.length;
     }
 
-    public int getColumnsNumber() {
+    public int getNumberColumns() {
         return arrayVectors[0].getSize();
     }
 
     public Vector getLineByIndex(int index) {
-        if (index < 0 || index >= getLinesNumber()) {
-            throw new IndexOutOfBoundsException("Индекс не должен быть меньше 0, а так же равен или больше значения, равному " + arrayVectors.length + ". Текущее значение индекса:  " + index);
+        if (index < 0 || index >= getNumberRows()) {
+            throw new IndexOutOfBoundsException("Индекс не должен быть меньше 0, а так же равен или больше значения, равному "
+                    + arrayVectors.length + ". Текущее значение индекса:  " + index);
         }
 
         return new Vector(arrayVectors[index]);
     }
 
     private void checkVectorSize(Vector vector) {
-        if (vector.getSize() != getColumnsNumber()) {
-            throw new IllegalArgumentException("У вставляемого вектора некорректная длина. Текущая длина: " + vector.getSize() + "; Необходимая длина: " + getColumnsNumber());
+        if (vector.getSize() != getNumberColumns()) {
+            throw new IllegalArgumentException("У вставляемого вектора некорректная длина. Текущая длина: "
+                    + vector.getSize() + "; Необходимая длина: " + getNumberColumns());
         }
     }
 
-    public void setLineByIndex(int index, Vector vector) {
+    public void setRowByIndex(int index, Vector vector) {
         if (index < 0 || index >= arrayVectors.length) {
-            throw new IndexOutOfBoundsException("Индекс не должен быть меньше 0, а так же равен или больше значения, равному " + arrayVectors.length + ". Текущее значение индекса:  " + index);
+            throw new IndexOutOfBoundsException("Индекс не должен быть меньше 0, а так же равен или больше значения, равному "
+                    + arrayVectors.length + ". Текущее значение индекса:  " + index);
         }
 
         checkVectorSize(vector);
@@ -100,13 +104,14 @@ public class Matrix {
     }
 
     public Vector getColumnByIndex(int index) {
-        if (index < 0 || index >= getColumnsNumber()) {
-            throw new IndexOutOfBoundsException("Индекс не должен быть меньше 0, а так же равен или больше значения, равному " + arrayVectors.length + ". Текущее значение индекса:  " + index);
+        if (index < 0 || index >= getNumberColumns()) {
+            throw new IndexOutOfBoundsException("Индекс не должен быть меньше 0, а так же равен или больше значения, равному "
+                    + arrayVectors.length + ". Текущее значение индекса:  " + index);
         }
 
-        Vector vector = new Vector(getLinesNumber());
+        Vector vector = new Vector(getNumberRows());
 
-        for (int i = 0; i < getLinesNumber(); i++) {
+        for (int i = 0; i < getNumberRows(); i++) {
             vector.setComponentByIndex(i, arrayVectors[i].getComponentByIndex(index));
         }
 
@@ -114,9 +119,9 @@ public class Matrix {
     }
 
     public void transpose() {
-        Vector[] newColumns = new Vector[getColumnsNumber()];
+        Vector[] newColumns = new Vector[getNumberColumns()];
 
-        for (int i = 0; i < getColumnsNumber(); i++) {
+        for (int i = 0; i < getNumberColumns(); i++) {
             newColumns[i] = this.getColumnByIndex(i);
         }
 
@@ -130,13 +135,14 @@ public class Matrix {
     }
 
     public Vector multiplyByVector(Vector vector) {
-        if (getColumnsNumber() != vector.getSize()) {
-            throw new IllegalArgumentException("Количество столбцов матрицы должно совпадать с размерностью вектора. Количество столбцов матрицы: " + getColumnsNumber() + ", размерность вектора: " + vector.getSize());
+        if (getNumberColumns() != vector.getSize()) {
+            throw new IllegalArgumentException("Количество столбцов матрицы должно совпадать с размерностью вектора. " +
+                    "Количество столбцов матрицы: " + getNumberColumns() + ", размерность вектора: " + vector.getSize());
         }
 
-        Vector result = new Vector(getLinesNumber());
+        Vector result = new Vector(getNumberRows());
 
-        for (int i = 0; i < getLinesNumber(); i++) {
+        for (int i = 0; i < getNumberRows(); i++) {
             result.setComponentByIndex(i, Vector.getScalarProduct(arrayVectors[i], vector));
         }
 
@@ -144,15 +150,17 @@ public class Matrix {
     }
 
     private void checkMatrixSize(Matrix matrix) {
-        if (matrix.getColumnsNumber() != getColumnsNumber() || matrix.getLinesNumber() != getLinesNumber()) {
-            throw new IllegalArgumentException("Некорректные размеры матриц. У первой матрицы размерность строк: " + getLinesNumber() + ", столбцов: " + getColumnsNumber() + ". У второй матрицы размерность строк: " + matrix.getLinesNumber() + ", столбцов: " + matrix.getColumnsNumber());
+        if (matrix.getNumberColumns() != getNumberColumns() || matrix.getNumberRows() != getNumberRows()) {
+            throw new IllegalArgumentException("Некорректные размеры матриц. У первой матрицы размерность строк: "
+                    + getNumberRows() + ", столбцов: " + getNumberColumns() + ". " +
+                    "У второй матрицы размерность строк: " + matrix.getNumberRows() + ", столбцов: " + matrix.getNumberColumns());
         }
     }
 
     public Matrix add(Matrix matrix) {
         checkMatrixSize(matrix);
 
-        for (int i = 0; i < getLinesNumber(); i++) {
+        for (int i = 0; i < getNumberRows(); i++) {
             arrayVectors[i].add(matrix.arrayVectors[i]);
         }
 
@@ -162,7 +170,7 @@ public class Matrix {
     public Matrix subtract(Matrix matrix) {
         checkMatrixSize(matrix);
 
-        for (int i = 0; i < getLinesNumber(); i++) {
+        for (int i = 0; i < getNumberRows(); i++) {
             arrayVectors[i].subtract(matrix.arrayVectors[i]);
         }
 
@@ -182,14 +190,16 @@ public class Matrix {
     }
 
     public static Matrix getMultiply(Matrix matrix1, Matrix matrix2) {
-        if (matrix1.getColumnsNumber() != matrix2.getLinesNumber()) {
-            throw new IllegalArgumentException("Размерность столбцов матрицы должна совпадать с размерность строк другой матрицы. У первой матрицы размерность столбцов: " + matrix1.getColumnsNumber() + ", размерность строк второй матрицы: " + matrix2.getLinesNumber());
+        if (matrix1.getNumberColumns() != matrix2.getNumberRows()) {
+            throw new IllegalArgumentException("Размерность столбцов матрицы должна совпадать с размерность строк другой матрицы. " +
+                    "У первой матрицы размерность столбцов: " + matrix1.getNumberColumns() +
+                    ", размерность строк второй матрицы: " + matrix2.getNumberRows());
         }
 
-        Matrix result = new Matrix(matrix1.getLinesNumber(), matrix2.getColumnsNumber());
+        Matrix result = new Matrix(matrix1.getNumberRows(), matrix2.getNumberColumns());
 
-        for (int i = 0; i < matrix1.getLinesNumber(); i++) {
-            for (int j = 0; j < matrix2.getColumnsNumber(); j++) {
+        for (int i = 0; i < matrix1.getNumberRows(); i++) {
+            for (int j = 0; j < matrix2.getNumberColumns(); j++) {
 
                 result.arrayVectors[i].setComponentByIndex(j, Vector.getScalarProduct(matrix1.getLineByIndex(i), matrix2.getColumnByIndex(j)));
             }
@@ -197,8 +207,6 @@ public class Matrix {
 
         return result;
     }
-
-    //Определитель не смог посчитать
 
     @Override
     public String toString() {
