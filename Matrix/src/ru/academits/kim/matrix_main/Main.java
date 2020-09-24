@@ -68,7 +68,5 @@ public class Main {
         Matrix matrix7 = new Matrix(array4);
 
         System.out.println("Определитель матрицы: " + matrix7.calculateDeterminant());
-
-
     }
 }
