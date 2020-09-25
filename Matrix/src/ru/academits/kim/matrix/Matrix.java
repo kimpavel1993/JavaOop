@@ -119,13 +119,13 @@ public class Matrix {
     }
 
     public void transpose() {
-        Vector[] newColumns = new Vector[getNumberColumn()];
+        Vector[] newColumn = new Vector[getNumberColumn()];
 
         for (int i = 0; i < getNumberColumn(); i++) {
-            newColumns[i] = this.getColumnByIndex(i);
+            newColumn[i] = this.getColumnByIndex(i);
         }
 
-        arrayVectors = newColumns;
+        arrayVectors = newColumn;
     }
 
     public void multiplyByScalar(double scalar) {
