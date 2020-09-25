@@ -25,9 +25,9 @@ public class Main {
         Matrix matrix4 = new Matrix(arrayVectors);
 
         System.out.println(matrix4);
-        System.out.println("Количество строк в матрице: " + matrix4.getNumberRows());
-        System.out.println("Количество столбцов в матрице: " + matrix4.getNumberColumns());
-        System.out.println("Получение вектора-строки по индексу: " + matrix3.getLineByIndex(1));
+        System.out.println("Количество строк в матрице: " + matrix4.getNumberRow());
+        System.out.println("Количество столбцов в матрице: " + matrix4.getNumberColumn());
+        System.out.println("Получение вектора-строки по индексу: " + matrix3.getRowByIndex(1));
 
         matrix2.setRowByIndex(2, vector1);
         System.out.println("Матрица с заданным вектором-строкой по индексу: " + matrix2);
