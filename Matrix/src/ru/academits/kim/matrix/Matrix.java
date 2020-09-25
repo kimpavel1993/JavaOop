@@ -119,7 +119,7 @@ public class Matrix {
         Vector[] newColumn = new Vector[getNumberColumn()];
 
         for (int i = 0; i < getNumberColumn(); i++) {
-            newColumn[i] = this.getColumnByIndex(i);
+            newColumn[i] = getColumnByIndex(i);
         }
 
         arrayVectors = newColumn;
