@@ -89,16 +89,13 @@ public class Matrix {
         return new Vector(arrayVectors[index]);
     }
 
-    private void checkVectorSize(Vector vector) {
+    public void setRowByIndex(int index, Vector vector) {
+        checkNumberRow(index);
+
         if (vector.getSize() != getNumberColumn()) {
             throw new IllegalArgumentException("У вставляемого вектора некорректная длина. Текущая длина: "
                     + vector.getSize() + "; Необходимая длина: " + getNumberColumn());
         }
-    }
-
-    public void setRowByIndex(int index, Vector vector) {
-        checkNumberRow(index);
-        checkVectorSize(vector);
 
         arrayVectors[index] = new Vector(vector);
     }
