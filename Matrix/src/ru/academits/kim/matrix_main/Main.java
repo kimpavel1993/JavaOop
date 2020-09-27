@@ -25,8 +25,8 @@ public class Main {
         Matrix matrix4 = new Matrix(arrayVectors);
 
         System.out.println(matrix4);
-        System.out.println("Количество строк в матрице: " + matrix4.getNumberRow());
-        System.out.println("Количество столбцов в матрице: " + matrix4.getNumberColumn());
+        System.out.println("Количество строк в матрице: " + matrix4.getRowsQuantity());
+        System.out.println("Количество столбцов в матрице: " + matrix4.getColumnsQuantity());
         System.out.println("Получение вектора-строки по индексу: " + matrix3.getRowByIndex(1));
 
         matrix2.setRowByIndex(2, vector1);
@@ -62,7 +62,7 @@ public class Main {
 
         System.out.println("Сложение матриц: " + Matrix.getSum(matrix6, matrix6));
         System.out.println("Разность матриц: " + Matrix.getDifference(matrix6, matrix6));
-        System.out.println("Произведение матриц: " + Matrix.getMultiply(matrix6, matrix6));
+        System.out.println("Произведение матриц: " + Matrix.getProduct(matrix6, matrix6));
 
         double[][] array4 = {{5, 34}, {44, 5, 69}, {2, 82, 1}};
 
