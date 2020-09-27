@@ -25,7 +25,7 @@ public class View {
         initialComboBox = new JComboBox<>();
         resultComboBox = new JComboBox<>();
 
-        for (int i = 0; i < model.getScaleIndex(); i++) {
+        for (int i = 0; i < model.getScalesQuantity(); i++) {
             initialComboBox.addItem(model.getScaleName(i));
             resultComboBox.addItem(model.getScaleName(i));
         }

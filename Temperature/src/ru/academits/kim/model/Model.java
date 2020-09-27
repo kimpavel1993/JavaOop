@@ -9,18 +9,18 @@ public class Model {
         this.scales = scales;
     }
 
-    public int getScaleIndex() {
-        int index = 0;
+    public int getScalesQuantity() {
+        int scalesQuantity = 0;
 
         for (int i = 0; i < scales.length; i++) {
-            index += i;
+            scalesQuantity += i;
         }
 
-        return index;
+        return scalesQuantity;
     }
 
     public String getScaleName(int index) {
-        for (int i = 0; i < getScaleIndex(); i++) {
+        for (int i = 0; i < getScalesQuantity(); i++) {
             if (i == index) {
                 return scales[index].getName();
             }
