@@ -7,8 +7,8 @@ public class Matrix {
 
     public Matrix(int rowsQuantity, int columnsQuantity) {
         if (rowsQuantity <= 0 || columnsQuantity <= 0) {
-            throw new IllegalArgumentException("Неверные входные данные. Необходимо, чтобы количество столбцов и строк была > 0. Количество строк: "
-                    + rowsQuantity + "Количество столбцов: " + columnsQuantity);
+            throw new IllegalArgumentException("Неверные входные данные. Необходимо, чтобы количество столбцов и строк было > 0. Количество строк: "
+                    + rowsQuantity + ", столбцов: " + columnsQuantity);
         }
 
         rows = new Vector[rowsQuantity];
@@ -102,7 +102,7 @@ public class Matrix {
 
         if (vector.getSize() != getColumnsQuantity()) {
             throw new IllegalArgumentException("У вставляемого вектора некорректная длина. Текущая длина: "
-                    + vector.getSize() + "; Необходимая длина: " + getColumnsQuantity());
+                    + vector.getSize() + ". Необходимая длина: " + getColumnsQuantity());
         }
 
         rows[index] = new Vector(vector);
@@ -157,8 +157,8 @@ public class Matrix {
     private void checkMatrixSize1(Matrix matrix) {
         if (matrix.getColumnsQuantity() != getColumnsQuantity() || matrix.getRowsQuantity() != getRowsQuantity()) {
             throw new IllegalArgumentException("Некорректные размеры матриц. У первой матрицы количество строк: "
-                    + getRowsQuantity() + ", столбцов: " + getColumnsQuantity() + ". " +
-                    "У второй матрицы количествор строк: " + matrix.getRowsQuantity() + ", столбцов: " + matrix.getColumnsQuantity());
+                    + getRowsQuantity() + ", столбцов: " + getColumnsQuantity() +
+                    ". У второй матрицы количество строк: " + matrix.getRowsQuantity() + ", столбцов: " + matrix.getColumnsQuantity());
         }
     }
 
