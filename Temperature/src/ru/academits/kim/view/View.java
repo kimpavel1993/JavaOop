@@ -7,17 +7,15 @@ import javax.swing.*;
 import java.awt.*;
 
 public class View {
-    JFrame frame;
-    JPanel panel;
-    JLabel initialLabel;
-    JLabel resultLabel;
-    JButton resultButton;
-    JButton clearButton;
-    JTextField initialTextField;
-    JTextField resultTextField;
-    JComboBox<String> initialComboBox;
-    JComboBox<String> resultComboBox;
-    Model model;
+    private JFrame frame;
+    private JPanel panel;
+    private JButton resultButton;
+    private JButton clearButton;
+    private JTextField initialTextField;
+    private JTextField resultTextField;
+    private final JComboBox<String> initialComboBox;
+    private final JComboBox<String> resultComboBox;
+    private final Model model;
 
     public View(Model model) {
         this.model = model;
@@ -58,7 +56,7 @@ public class View {
         c1.anchor = GridBagConstraints.CENTER;
         c1.insets = new Insets(10, 0, 0, 0);
 
-        initialLabel = new JLabel("Введите температуру: ");
+        JLabel initialLabel = new JLabel("Введите температуру: ");
 
         panel.add(initialLabel, c1);
 
@@ -132,7 +130,7 @@ public class View {
         c7.anchor = GridBagConstraints.CENTER;
         c7.insets = new Insets(10, 0, 0, 0);
 
-        resultLabel = new JLabel("Результат: ");
+        JLabel resultLabel = new JLabel("Результат: ");
 
         panel.add(resultLabel, c7);
 

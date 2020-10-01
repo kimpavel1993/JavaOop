@@ -10,23 +10,11 @@ public class Model {
     }
 
     public int getScalesQuantity() {
-        int scalesQuantity = 0;
-
-        for (int i = 0; i < scales.length; i++) {
-            scalesQuantity += i;
-        }
-
-        return scalesQuantity;
+        return scales.length;
     }
 
     public String getScaleName(int index) {
-        for (int i = 0; i < getScalesQuantity(); i++) {
-            if (i == index) {
-                return scales[index].getName();
-            }
-        }
-
-        return null;
+        return scales[index].getName();
     }
 
     public Scale getScale(String scaleName) {
