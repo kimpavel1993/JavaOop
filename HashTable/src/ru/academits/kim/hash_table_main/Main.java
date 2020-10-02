@@ -23,7 +23,6 @@ public class Main {
         hashTable.add(109);
 
         System.out.println(hashTable);
-
         System.out.println("Наличие элемента в массиве списков: " + hashTable.contains(101));
 
         Iterator<?> iterator = hashTable.iterator();
@@ -33,7 +32,7 @@ public class Main {
         while (iterator.hasNext()) {
             System.out.println(iterator.next());
         }
-        
+
         System.out.println("Преобразование таблицы в массив: " + Arrays.toString(hashTable.toArray()));
 
         Integer[] numbers = {34, 88, 92, 232, 542, 755, 23, 34, 666, 1, 2, 7, 5, 343};
