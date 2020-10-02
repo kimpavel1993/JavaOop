@@ -87,7 +87,6 @@ public class HashTable<T> implements Collection<T> {
                     if (listIndex == lists[i].size()) {
                         arrayIndex++;
                         listIndex = 0;
-
                     }
 
                     return element;
@@ -204,7 +203,6 @@ public class HashTable<T> implements Collection<T> {
         for (ArrayList<T> e : lists) {
             if (e != null) {
                 int sizeBeforeRemove = e.size();
-
 
                 if (e.removeAll(c)) {
                     isRemoved = true;
