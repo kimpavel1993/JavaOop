@@ -64,10 +64,10 @@ public class Main {
         System.out.println("Разность матриц: " + Matrix.getDifference(matrix6, matrix6));
         System.out.println("Произведение матриц: " + Matrix.getProduct(matrix6, matrix6));
 
-        double[][] array4 = {{5, 34}, {44, 5, 69}, {2, 82, 1}};
+        double[][] array4 = {{2, 4, 1, 1}, {0, 2, 1, 0}, {2, 1, 1, 3}, {4, 0, 2, 3}};
 
         Matrix matrix7 = new Matrix(array4);
 
-        System.out.println("Определитель матрицы: " + matrix7.calculateDeterminant());
+        System.out.println("Определитель матрицы: " + matrix7.getDeterminant());
     }
 }
