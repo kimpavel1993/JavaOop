@@ -7,13 +7,13 @@ public class HashTable<T> implements Collection<T> {
     private int size;
     private int modCount;
 
-    public HashTable(int capacity) {
-        if (capacity < 0) {
-            throw new IllegalArgumentException("Вместимость должна быть > 0. Текущее значение вместимости: " + capacity);
+    public HashTable(int arrayLength) {
+        if (arrayLength <= 0) {
+            throw new IllegalArgumentException("Вместимость должна быть > 0. Текущее значение вместимости: " + arrayLength);
         }
 
         //noinspection unchecked
-        lists = new ArrayList[capacity];
+        lists = new ArrayList[arrayLength];
     }
 
     public HashTable() {
@@ -39,7 +39,6 @@ public class HashTable<T> implements Collection<T> {
         return size == 0;
     }
 
-
     @Override
     public boolean contains(Object o) {
         int index = getIndex(o);
@@ -59,7 +58,7 @@ public class HashTable<T> implements Collection<T> {
 
         @Override
         public boolean hasNext() {
-            return currentIndex + 1 < size();
+            return currentIndex + 1 < size;
         }
 
         @Override
@@ -69,18 +68,16 @@ public class HashTable<T> implements Collection<T> {
             }
 
             if (currentModCount != modCount) {
-                throw new ConcurrentModificationException("В коллекцию добавились/удалились элементы");
+                throw new ConcurrentModificationException("Коллекция изменилась");
             }
 
             currentIndex++;
 
-            T element;
-
             for (int i = arrayIndex; i < lists.length; i++) {
                 arrayIndex = i;
 
-                if (lists[i] != null & lists[i].size() > 0) {
-                    element = lists[i].get(listIndex);
+                if (lists[i] != null && !lists[i].isEmpty()) {
+                    T element = lists[i].get(listIndex);
 
                     listIndex++;
 
@@ -189,7 +186,7 @@ public class HashTable<T> implements Collection<T> {
             add(element);
         }
 
-        return c.size() > 0;
+        return true;
     }
 
     @Override
@@ -280,13 +277,13 @@ public class HashTable<T> implements Collection<T> {
                     int index = getIndex(element);
 
                     if (i == 0) {
-                        String result = String.format("%d. %s, ", index, element);
+                        String result = index + ". " + element + ", ";
 
                         stringBuilder.append(result);
 
                         i++;
                     } else {
-                        String result = String.format("%s, ", element);
+                        String result = element + ", ";
 
                         stringBuilder.append(result);
                     }
