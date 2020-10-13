@@ -27,9 +27,8 @@ public class Matrix {
     }
 
     public Matrix(double[][] array) {
-        if (array.length == 0 || array[0].length == 0) {
-            throw new IllegalArgumentException("Неверные входные данные. Необходимо, чтобы количество столбцов и строк было > 0. Количество строк: "
-                    + array.length + ", столбцов: " + array[0].length);
+        if (array[0].length == 0) {
+            throw new IllegalArgumentException("Неверные входные данные. Необходимо, чтобы количество столбцов было > 0. Количество столбцов: " + array[0].length);
         }
 
         rows = new Vector[array.length];
@@ -227,15 +226,15 @@ public class Matrix {
     }
 
     public double getDeterminant() {
-        if (getRowsQuantity() != getColumnsQuantity()) {
+        Matrix matrix = new Matrix(this);
+
+        if (matrix.getRowsQuantity() != matrix.getColumnsQuantity()) {
             throw new UnsupportedOperationException("Определителя не существует. Количество строк и столбцов не равно. " +
                     "Текущее количество строк: " + getRowsQuantity() + ", количество столбцов: " + getColumnsQuantity());
         }
 
-        Vector[] vectors = rows;
-
         if (getRowsQuantity() == 1) {
-            return vectors[0].getComponentByIndex(0);
+            return matrix.rows[0].getComponentByIndex(0);
         }
 
         int numberPermutationsRows = 0;
@@ -243,25 +242,24 @@ public class Matrix {
         for (int i = 0; i < getRowsQuantity() - 1; i++) {
             for (int j = i + 1; j < getColumnsQuantity(); j++) {
                 if (getMaxValueIndex(i) != i) {
-                    Vector vector = vectors[i];
-                    vectors[i] = vectors[j];
-                    vectors[j] = vector;
+                    Vector vector = matrix.rows[i];
+                    matrix.rows[i] = matrix.rows[j];
+                    matrix.rows[j] = vector;
 
                     numberPermutationsRows++;
                 }
 
-                double number;
                 double epsilon = 1.0e-10;
 
-                if (Math.abs(vectors[i].getComponentByIndex(i)) < epsilon) {
-                    vectors[i].setComponentByIndex(i, epsilon);
+                if (Math.abs(matrix.rows[i].getComponentByIndex(i)) < epsilon) {
+                    matrix.rows[i].setComponentByIndex(i, epsilon);
                 }
 
-                number = vectors[j].getComponentByIndex(i) / vectors[i].getComponentByIndex(i);
+                double number = matrix.rows[j].getComponentByIndex(i) / matrix.rows[i].getComponentByIndex(i);
 
                 for (int k = i; k < getColumnsQuantity(); k++) {
-                    vectors[j].setComponentByIndex(k, vectors[j].getComponentByIndex(k) -
-                            vectors[i].getComponentByIndex(k) * number);
+                        matrix.rows[j].setComponentByIndex(k, matrix.rows[j].getComponentByIndex(k) -
+                                matrix.rows[i].getComponentByIndex(k) * number);
                 }
             }
         }
@@ -269,10 +267,10 @@ public class Matrix {
         double determinant = 1;
 
         for (int i = 0; i < getColumnsQuantity(); ++i) {
-            determinant *= Math.pow(-1, numberPermutationsRows) * vectors[i].getComponentByIndex(i);
+            determinant *= Math.pow(-1, numberPermutationsRows) * matrix.rows[i].getComponentByIndex(i);
         }
 
-        return (Math.round(determinant));
+        return determinant;
     }
 
     @Override
